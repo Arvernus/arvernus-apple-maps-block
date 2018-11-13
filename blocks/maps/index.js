@@ -4,6 +4,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
+import AppleMap from './AppleMap';
 
 /**
  * WordPress dependencies
@@ -128,7 +129,7 @@ registerBlockType(
 							<SelectControl
 								label={ __( 'Map Type' ) }
 								value={ mapType }
-								onChange={ (value) => { setAttributes( { mapType: value } ); redrawMap() } }
+								onChange={ (value) => { setAttributes( { mapType: value } ) } }
 								options={ mapTypeOptions }
 							/>
 						</PanelBody>
@@ -136,24 +137,24 @@ registerBlockType(
 							<TextControl
 								label={ __( 'Titel' ) }
 								value={ pointTitle }
-								onChange={ (value) => { setAttributes( { pointTitle: value } ); redrawMap() } }
+								onChange={ (value) => { setAttributes( { pointTitle: value } ) } }
 							/>
 							<TextControl
 								label={ __( 'Subtitle' ) }
 								value={ pointSubtitle }
-								onChange={ (value) => { setAttributes( { pointSubtitle: value } ); redrawMap() } }
+								onChange={ (value) => { setAttributes( { pointSubtitle: value } ) } }
 							/>
 							<TextControl
 								label={ __( 'Glyph Text' ) }
 								value={ pointGlyphText }
-								onChange={ (value) => { setAttributes( { pointGlyphText: value } ); redrawMap() } }
+								onChange={ (value) => { setAttributes( { pointGlyphText: value } ) } }
 							/>
 							<PanelColorSettings
 								title={ __( 'Color Settings' ) }
 								colorSettings={ [
 									{
 										value: pointColor,
-										onChange: (value) => { setAttributes( { pointColor: value } ); redrawMap() },
+										onChange: (value) => { setAttributes( { pointColor: value } ) },
 										label: __( 'Glyph Color' ),
 									},
 								] }
@@ -170,27 +171,27 @@ registerBlockType(
 							<TextControl
 								label={ __( 'Latitude' ) }
 								value={ pointLatitude }
-								onChange={ (value) => { setAttributes( { pointLatitude: value } ); redrawMap() } }
+								onChange={ (value) => { setAttributes( { pointLatitude: value } ) } }
 							/>
 							<TextControl
 								label={ __( 'Longitude' ) }
 								value={ pointLongitude }
-								onChange={ (value) => { setAttributes( { pointLongitude: value } ); redrawMap() } }
+								onChange={ (value) => { setAttributes( { pointLongitude: value } ) } }
 							/>
 						</PanelBody>
 					</InspectorControls>
-					<div 
+					<AppleMap 
 						className={ props.className }
-						id="map"
-						data-shows-map-type-control={ showsMapTypeControl }
-						data-map-type={ mapType }
-						data-point-title={ pointTitle }
-						data-point-subtitle={ pointSubtitle }
-						data-point-glyph-text={ pointGlyphText }
-						data-point-latitude={ pointLatitude }
-						data-point-longitude={ pointLongitude }
-						data-point-color={ pointColor }
-					></div>
+						showsMapTypeControl={ showsMapTypeControl }
+						mapType={ mapType }
+						pointTitle={ pointTitle }
+						pointSubtitle={ pointSubtitle }
+						pointGlyphText={ pointGlyphText }
+						pointLatitude={ pointLatitude }
+						pointLongitude={ pointLongitude }
+						pointColor={ pointColor }
+						redrawFuncrion={ redrawMap }
+					/>
 				</Fragment>
 			);
 
@@ -199,18 +200,17 @@ registerBlockType(
 		save: props => {
 			const { attributes: { showsMapTypeControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType }, className, setAttributes } = props;
 			return (
-				<div 
+				<AppleMap 
 					className={ props.className }
-					id="map"
-					data-shows-map-type-control={ showsMapTypeControl }
-					data-map-type={ mapType }
-					data-point-title={ pointTitle }
-					data-point-subtitle={ pointSubtitle }
-					data-point-glyph-text={ pointGlyphText }
-					data-point-latitude={ pointLatitude }
-					data-point-longitude={ pointLongitude }
-					data-point-color={ pointColor }
-				></div>
+					showsMapTypeControl={ showsMapTypeControl }
+					mapType={ mapType }
+					pointTitle={ pointTitle }
+					pointSubtitle={ pointSubtitle }
+					pointGlyphText={ pointGlyphText }
+					pointLatitude={ pointLatitude }
+					pointLongitude={ pointLongitude }
+					pointColor={ pointColor }
+				/>
 			);
 		},
 } );

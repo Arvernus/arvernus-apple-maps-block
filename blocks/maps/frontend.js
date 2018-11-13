@@ -50,33 +50,33 @@ mapkit.customRedraw = function(latitude, longitude, title, subtitle, glyphText, 
 	map.showItems([workAnnotation]);
 }
 
-document.addEventListener('readystatechange', function(event) {
-	if (event.target.readyState === "interactive") {
-		mapkit.init({
-			authorizationCallback: function(done) {
-				fetch("https://arvernus.info/wp-json/AppleMapKit/v1/GetJWT/", {
-					method: "GET",
-					headers: {
-						Accept: 'text/plain',
-					},
-				},)
-				.then(function(response) {
-					if (response.status >= 200 && response.status < 400 ) {
-						return response.text();
-					}
-					else {
-						throw `Response resulted in error ${response.status}`;
-					}
-				})
-				.then(function(result) {
-					done(result)
-				});
-			}
-		});
-	}
-	if (event.target.readyState === "complete") {
-		mapNode = document.querySelector('#map');
-		map = new mapkit.Map(mapNode);
-		mapkit.customDraw();
-	}
-}, false );
+// document.addEventListener('readystatechange', function(event) {
+// 	if (event.target.readyState === "interactive") {
+// 		mapkit.init({
+// 			authorizationCallback: function(done) {
+// 				fetch("https://arvernus.info/wp-json/AppleMapKit/v1/GetJWT/", {
+// 					method: "GET",
+// 					headers: {
+// 						Accept: 'text/plain',
+// 					},
+// 				},)
+// 				.then(function(response) {
+// 					if (response.status >= 200 && response.status < 400 ) {
+// 						return response.text();
+// 					}
+// 					else {
+// 						throw `Response resulted in error ${response.status}`;
+// 					}
+// 				})
+// 				.then(function(result) {
+// 					done(result)
+// 				});
+// 			}
+// 		});
+// 	}
+// 	if (event.target.readyState === "complete") {
+// 		mapNode = document.querySelector('#map');
+// 		map = new mapkit.Map(mapNode);
+// 		mapkit.customDraw();
+// 	}
+// }, false );
