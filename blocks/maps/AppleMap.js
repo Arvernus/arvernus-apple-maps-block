@@ -1,4 +1,18 @@
-class AppleMap extends wp.element.Component {
+import 'apple-mapkit-js';
+import 'apple-mapkit-js/contains';
+
+class AppleMap extends wp.element.Component { 
+	constructor(props) {
+		super(props)
+		this.state = {
+			appleMap: {},
+			markerCoordinate: {},
+			markerAnnotation: {},
+		}
+	}
+	emptyComponent() {
+		document.getElementById('map').innerHTML = "";
+	}
 	componentDidMount() {
 		mapkit.init({
 			authorizationCallback: function(done) {
@@ -21,56 +35,62 @@ class AppleMap extends wp.element.Component {
 				});
 			}
 		});
+		const appleMap = new mapkit.Map('map');
+		appleMap.mapType = this.props.mapType;
+		appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
+		// appleMap.showsCompass = 'hidden';
+		// appleMap.showsZoomControl = false;
 
-		const map = new mapkit.Map('map');
-		map.mapType = this.props.mapType;
-		map.showsMapTypeControl = this.props.showsMapTypeControl;
-		// map.showsCompass = 'hidden';
-		// map.showsZoomControl = false;
+		const markerCoordinate = new mapkit.Coordinate( Number.parseFloat( this.props.pointLatitude ), Number.parseFloat( this.props.pointLongitude ) );
+		const markerAnnotation = new mapkit.MarkerAnnotation( markerCoordinate );
 
-		if ( this.props.pointLongitude && this.props.pointLatitude ) {
-			const customLocation = new mapkit.Coordinate( Number.parseFloat( this.props.pointLatitude ), Number.parseFloat( this.props.pointLongitude ) );
-			const customAnnotation = new mapkit.MarkerAnnotation( customLocation );
-
-			customAnnotation.color = this.props.pointColor; 
-			customAnnotation.title = this.props.pointTitle;
-			customAnnotation.subtitle = this.props.pointSubtitle;
-			customAnnotation.selected = "true";
-			customAnnotation.glyphText = this.props.pointGlyphText;    
-			map.showItems(
-				[customAnnotation],
-				{ 
-					animate: true,
-					padding: new mapkit.Padding(800, 200, 800, 200)
-				}
-			);
-		}
+		markerAnnotation.color = this.props.pointColor; 
+		markerAnnotation.title = this.props.pointTitle;
+		markerAnnotation.subtitle = this.props.pointSubtitle;
+		markerAnnotation.selected = "true";
+		markerAnnotation.glyphText = this.props.pointGlyphText;    
+		appleMap.showItems(
+			[markerAnnotation],
+			{
+				animate: true,
+				padding: new mapkit.Padding(800, 200, 800, 200)
+			}
+		);
+		this.setState( {
+			appleMap: appleMap,
+			markerAnnotation: markerAnnotation,
+			markerCoordinate: markerCoordinate,
+		} )
 	}
 	componentDidUpdate() {
-		document.getElementById('map').innerHTML = "";
-		const map = new mapkit.Map('map');
-		map.mapType = this.props.mapType;
-		map.showsMapTypeControl = this.props.showsMapTypeControl;
+
+		const newLocation = new mapkit.Coordinate( Number.parseFloat( this.props.pointLatitude ), Number.parseFloat( this.props.pointLongitude ) );
+
+		let appleMap = this.state.appleMap;
+		let markerCoordinate = this.state.markerCoordinate;
+		let markerAnnotation = this.state.markerAnnotation;
+		if ( !( markerCoordinate.latitude === newLocation.latitude && markerCoordinate.longitude === newLocation.longitude ) ) {
+			markerCoordinate = newLocation;
+		}
+
+		appleMap.mapType = this.props.mapType;
+		appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
 		// map.showsCompass = 'hidden';
 		// map.showsZoomControl = false;
 
-		if ( this.props.pointLongitude && this.props.pointLatitude ) {
-			const customLocation = new mapkit.Coordinate( Number.parseFloat( this.props.pointLatitude ), Number.parseFloat( this.props.pointLongitude ) );
-			const customAnnotation = new mapkit.MarkerAnnotation( customLocation );
-
-			customAnnotation.color = this.props.pointColor; 
-			customAnnotation.title = this.props.pointTitle;
-			customAnnotation.subtitle = this.props.pointSubtitle;
-			customAnnotation.selected = "true";
-			customAnnotation.glyphText = this.props.pointGlyphText;    
-			map.showItems(
-				[customAnnotation],
-				{ 
-					animate: true,
-					padding: new mapkit.Padding(800, 200, 800, 200)
-				}
-			);
-		}
+		markerAnnotation.coordinate = markerCoordinate;
+		markerAnnotation.color = this.props.pointColor; 
+		markerAnnotation.title = this.props.pointTitle;
+		markerAnnotation.subtitle = this.props.pointSubtitle;
+		markerAnnotation.selected = "true";
+		markerAnnotation.glyphText = this.props.pointGlyphText;    
+		appleMap.showItems(
+			[markerAnnotation],
+			{ 
+				animate: true,
+				padding: new mapkit.Padding(800, 200, 800, 200)
+			}
+		);
 	}
 	render() {
 		return (

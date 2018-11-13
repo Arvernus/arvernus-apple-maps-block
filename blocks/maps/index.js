@@ -96,10 +96,6 @@ registerBlockType(
 		},
 		edit: props => {
 			const { attributes: { showsMapTypeControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className, setAttributes } = props;
-			const redrawMap = () => {
-				console.log('redraw');
-				mapkit.customRedraw(pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor);
-			};
 			const toggleMapTypeControl = ( value ) => {
 				setAttributes( {showsMapTypeControl: !showsMapTypeControl } );
 			};
@@ -110,9 +106,9 @@ registerBlockType(
 						if (error) {
 							return;
 						}
+						console.log(data);
 						setAttributes( { pointLatitude: data.places[0].coordinate.latitude } );
 						setAttributes( { pointLongitude: data.places[0].coordinate.longitude } );
-						redrawMap();
 					} )
 				}
 			};
@@ -124,12 +120,12 @@ registerBlockType(
 								label={__( 'Show Map Type Control' ) }
 								help={ showsMapTypeControl ? __('Map Type Control is visible.') : __('Map Type Control is hidden.') } 
 								checked={ showsMapTypeControl }
-								onChange={ toggleMapTypeControl  }
+								onChange={ value => { setAttributes( {showsMapTypeControl: !showsMapTypeControl } ) }  }
 							/>
 							<SelectControl
 								label={ __( 'Map Type' ) }
 								value={ mapType }
-								onChange={ (value) => { setAttributes( { mapType: value } ) } }
+								onChange={ value => { setAttributes( { mapType: value } ) } }
 								options={ mapTypeOptions }
 							/>
 						</PanelBody>
@@ -137,24 +133,24 @@ registerBlockType(
 							<TextControl
 								label={ __( 'Titel' ) }
 								value={ pointTitle }
-								onChange={ (value) => { setAttributes( { pointTitle: value } ) } }
+								onChange={ value => { setAttributes( { pointTitle: value } ) } }
 							/>
 							<TextControl
 								label={ __( 'Subtitle' ) }
 								value={ pointSubtitle }
-								onChange={ (value) => { setAttributes( { pointSubtitle: value } ) } }
+								onChange={ value => { setAttributes( { pointSubtitle: value } ) } }
 							/>
 							<TextControl
 								label={ __( 'Glyph Text' ) }
 								value={ pointGlyphText }
-								onChange={ (value) => { setAttributes( { pointGlyphText: value } ) } }
+								onChange={ value => { setAttributes( { pointGlyphText: value } ) } }
 							/>
 							<PanelColorSettings
 								title={ __( 'Color Settings' ) }
 								colorSettings={ [
 									{
 										value: pointColor,
-										onChange: (value) => { setAttributes( { pointColor: value } ) },
+										onChange: value => { setAttributes( { pointColor: value } ) },
 										label: __( 'Glyph Color' ),
 									},
 								] }
@@ -171,12 +167,12 @@ registerBlockType(
 							<TextControl
 								label={ __( 'Latitude' ) }
 								value={ pointLatitude }
-								onChange={ (value) => { setAttributes( { pointLatitude: value } ) } }
+								onChange={ value => { setAttributes( { pointLatitude: value } ) } }
 							/>
 							<TextControl
 								label={ __( 'Longitude' ) }
 								value={ pointLongitude }
-								onChange={ (value) => { setAttributes( { pointLongitude: value } ) } }
+								onChange={ value => { setAttributes( { pointLongitude: value } ) } }
 							/>
 						</PanelBody>
 					</InspectorControls>
@@ -190,7 +186,6 @@ registerBlockType(
 						pointLatitude={ pointLatitude }
 						pointLongitude={ pointLongitude }
 						pointColor={ pointColor }
-						redrawFuncrion={ redrawMap }
 					/>
 				</Fragment>
 			);

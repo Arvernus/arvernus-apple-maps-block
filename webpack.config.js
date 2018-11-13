@@ -1,7 +1,6 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-const WebpackAutoInject = require( 'webpack-auto-inject-version' );
 
 // Set different CSS extraction for editor only and common block styles
 const blocksCSSPlugin = new ExtractTextPlugin( {
@@ -10,35 +9,6 @@ const blocksCSSPlugin = new ExtractTextPlugin( {
 const editBlocksCSSPlugin = new ExtractTextPlugin( {
   filename: './assets/css/blocks.editor.css',
 } );
-
-
-const WebpackAutoInjectPlugin = new WebpackAutoInject({
-  NAME: '',
-  SHORT: '',
-  SILENT: false,
-  PACKAGE_JSON_PATH: './package.json',
-  components: {
-    AutoIncreaseVersion: true,
-    InjectAsComment: false,
-    InjectByTag: true
-  },
-  componentsOptions: {
-    AutoIncreaseVersion: {
-      runInWatchMode: true // it will increase version with every single build!
-    },
-    InjectAsComment: {
-      tag: 'Version: {version} - {date}',
-      dateFormat: 'h:MM:ss TT'
-    },
-    InjectByTag: {
-      fileRegex: /\.+/,
-      dateFormat: 'h:MM:ss TT'
-    }
-  },
-  LOGS_TEXT: {
-    AIS_START: 'DEMO AIV started'
-  }
-});
 
 // Configuration for the ExtractTextPlugin.
 const extractConfig = {
@@ -60,6 +30,7 @@ const extractConfig = {
   ],
 };
 
+
 module.exports = {
   entry: {
     './assets/js/editor.blocks' : './blocks/index.js',
@@ -69,7 +40,7 @@ module.exports = {
     path: path.resolve( __dirname ),
     filename: '[name].js',
   },
-  watch: true,
+  watch: 'production' !== process.env.NODE_ENV,
   devtool: 'cheap-eval-source-map',
   module: {
     rules: [
@@ -93,6 +64,5 @@ module.exports = {
   plugins: [
     blocksCSSPlugin,
     editBlocksCSSPlugin,
-    WebpackAutoInjectPlugin,
   ],
 };

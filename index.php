@@ -1,26 +1,52 @@
 <?php
 /**
- * Plugin Name: Apple Maps - Gutenberg Block
+ * Plugin Name: Apple Maps Block
  * Description: Creates a Gutenberg Block of the Apple MapKit JS library.
  * Author: Arvernus.info
  * Author URI: https://arvernus.info
- * Version: 1.0.0
- *
- * @package arvernusblocks
+ * Version: 1.0.1
  */
+
+namespace Arvernus\Apple_Maps_Gutenberg_Block;
 
 //  Exit if accessed directly.
 defined('ABSPATH') || exit;
 
-define( 'MAPKITJSSERVER_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
-
-function mapkitblock_projectcpt_blocks() {
-  /**
-   * Initialize the blocks
-   */
-  require_once MAPKITJSSERVER_PLUGIN_PATH . 'gutenberg.php';
+/**
+ * Gets this plugin's absolute directory path.
+ *
+ * @since  2.1.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_directory() {
+	return __DIR__;
 }
-add_action( 'init', 'mapkitblock_projectcpt_blocks' );
 
-require_once MAPKITJSSERVER_PLUGIN_PATH . 'customizer.php';
-require_once MAPKITJSSERVER_PLUGIN_PATH . 'jwt-auth.php';
+/**
+ * Gets this plugin's URL.
+ *
+ * @since  2.1.0
+ * @ignore
+ * @access private
+ *
+ * @return string
+ */
+function _get_plugin_url() {
+	static $plugin_url;
+
+	if ( empty( $plugin_url ) ) {
+		$plugin_url = plugins_url( null, __FILE__ );
+	}
+
+	return $plugin_url;
+}
+
+// Enqueue JS and CSS
+include __DIR__ . '/lib/enqueue-scripts.php';
+
+include __DIR__ . '/lib/jwt-auth.php';
+include __DIR__ . '/lib/customizer.php';
+

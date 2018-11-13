@@ -1,5 +1,7 @@
 <?php
 
+namespace Arvernus\Apple_Maps_Gutenberg_Block;
+
 function mapkit_customizer_register_settings( $wp_customize ) {
 
 	$wp_customize->add_section( 'apple_maps' , array(
@@ -59,4 +61,4 @@ function mapkit_customizer_register_settings( $wp_customize ) {
 		) );
 
 }
-add_action( 'customize_register', 'mapkit_customizer_register_settings' );
+add_action( 'customize_register', __NAMESPACE__ . '\mapkit_customizer_register_settings' );
