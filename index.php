@@ -12,13 +12,15 @@
 //  Exit if accessed directly.
 defined('ABSPATH') || exit;
 
-define( 'MAPKITBLOCK_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'MAPKITJSSERVER_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
 function mapkitblock_projectcpt_blocks() {
   /**
    * Initialize the blocks
    */
-  require_once MAPKITBLOCK_PLUGIN_PATH . 'gutenberg.php';
+  require_once MAPKITJSSERVER_PLUGIN_PATH . 'gutenberg.php';
 }
 add_action( 'init', 'mapkitblock_projectcpt_blocks' );
 
+require_once MAPKITJSSERVER_PLUGIN_PATH . 'customizer.php';
+require_once MAPKITJSSERVER_PLUGIN_PATH . 'jwt-auth.php';
