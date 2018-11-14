@@ -6,6 +6,8 @@
 import classnames from 'classnames';
 import AppleMap from './AppleMap';
 
+import Search from './Search';
+
 /**
  * WordPress dependencies
  */
@@ -155,15 +157,7 @@ registerBlockType(
 									},
 								] }
 							/>
-							<TextControl
-								label={ __( 'Search Place' ) }
-								value={ searchQuery }
-								onChange={ (value) => { setAttributes( { searchQuery: value } ) } }
-							/>
-							<Button isDefault
-								onClick={ startSearch }>
-								Search
-							</Button>
+							<Search props={props} />
 							<TextControl
 								label={ __( 'Latitude' ) }
 								value={ pointLatitude }
