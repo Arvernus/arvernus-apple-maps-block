@@ -16,7 +16,7 @@ class AppleMap extends wp.element.Component {
 	componentDidMount() {
 		mapkit.init({
 			authorizationCallback: function(done) {
-				fetch("https://arvernus.info/wp-json/AppleMapKit/v1/GetJWT/", {
+				fetch(`${window.location.origin}/wp-json/AppleMapKit/v1/GetJWT/`, {
 					method: "GET",
 					headers: {
 						Accept: 'text/plain',
@@ -35,27 +35,28 @@ class AppleMap extends wp.element.Component {
 				});
 			}
 		});
-		const appleMap = new mapkit.Map('map');
-		appleMap.mapType = this.props.mapType;
-		appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
-		// appleMap.showsCompass = 'hidden';
-		// appleMap.showsZoomControl = false;
 
 		const markerCoordinate = new mapkit.Coordinate( Number.parseFloat( this.props.pointLatitude ), Number.parseFloat( this.props.pointLongitude ) );
+		
 		const markerAnnotation = new mapkit.MarkerAnnotation( markerCoordinate );
+			markerAnnotation.color = this.props.pointColor; 
+			markerAnnotation.title = this.props.pointTitle;
+			markerAnnotation.subtitle = this.props.pointSubtitle;
+			markerAnnotation.selected = "true";
+			markerAnnotation.glyphText = this.props.pointGlyphText;  
 
-		markerAnnotation.color = this.props.pointColor; 
-		markerAnnotation.title = this.props.pointTitle;
-		markerAnnotation.subtitle = this.props.pointSubtitle;
-		markerAnnotation.selected = "true";
-		markerAnnotation.glyphText = this.props.pointGlyphText;    
-		appleMap.showItems(
-			[markerAnnotation],
-			{
-				animate: true,
-				padding: new mapkit.Padding(800, 200, 800, 200)
-			}
-		);
+		const appleMap = new mapkit.Map('map');
+			appleMap.mapType = this.props.mapType;
+			appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
+			appleMap.showsCompass = mapkit.FeatureVisibility.Adaptive;
+			appleMap.showsZoomControl = this.props.showsZoomControl;
+			appleMap.showItems(
+				[markerAnnotation],
+				{
+					animate: true,
+					padding: new mapkit.Padding(800, 200, 800, 200)
+				}
+			);
 		this.setState( {
 			appleMap: appleMap,
 			markerAnnotation: markerAnnotation,
@@ -66,31 +67,32 @@ class AppleMap extends wp.element.Component {
 
 		const newLocation = new mapkit.Coordinate( Number.parseFloat( this.props.pointLatitude ), Number.parseFloat( this.props.pointLongitude ) );
 
-		let appleMap = this.state.appleMap;
 		let markerCoordinate = this.state.markerCoordinate;
-		let markerAnnotation = this.state.markerAnnotation;
+		
 		if ( !( markerCoordinate.latitude === newLocation.latitude && markerCoordinate.longitude === newLocation.longitude ) ) {
 			markerCoordinate = newLocation;
 		}
 
-		appleMap.mapType = this.props.mapType;
-		appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
-		// map.showsCompass = 'hidden';
-		// map.showsZoomControl = false;
+		const markerAnnotation = this.state.markerAnnotation;
+			markerAnnotation.coordinate = markerCoordinate;
+			markerAnnotation.color = this.props.pointColor; 
+			markerAnnotation.title = this.props.pointTitle;
+			markerAnnotation.subtitle = this.props.pointSubtitle;
+			markerAnnotation.selected = "true";
+			markerAnnotation.glyphText = this.props.pointGlyphText;
 
-		markerAnnotation.coordinate = markerCoordinate;
-		markerAnnotation.color = this.props.pointColor; 
-		markerAnnotation.title = this.props.pointTitle;
-		markerAnnotation.subtitle = this.props.pointSubtitle;
-		markerAnnotation.selected = "true";
-		markerAnnotation.glyphText = this.props.pointGlyphText;    
-		appleMap.showItems(
-			[markerAnnotation],
-			{ 
-				animate: true,
-				padding: new mapkit.Padding(800, 200, 800, 200)
-			}
-		);
+		const appleMap = this.state.appleMap;
+			appleMap.mapType = this.props.mapType;
+			appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
+			appleMap.showsCompass = mapkit.FeatureVisibility.Adaptive;
+			appleMap.showsZoomControl = this.props.showsZoomControl;    
+			appleMap.showItems(
+				[markerAnnotation],
+				{ 
+					animate: true,
+					padding: new mapkit.Padding(800, 200, 800, 200)
+				}
+			);
 	}
 	render() {
 		return (
@@ -98,6 +100,8 @@ class AppleMap extends wp.element.Component {
 				className={ this.props.className }
 				id="map"
 				data-shows-map-type-control={ this.props.showsMapTypeControl }
+				data-shows-compass={ this.props.showsCompass }
+				data-shows-zoom-controll={ this.props.showsZoomControl }
 				data-map-type={ this.props.mapType }
 				data-point-title={ this.props.pointTitle }
 				data-point-subtitle={ this.props.pointSubtitle }

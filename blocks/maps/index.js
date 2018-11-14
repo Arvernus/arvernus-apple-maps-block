@@ -52,6 +52,10 @@ const mapAttributes = {
 		type: 'Boolean',
 		default: true,
 	},
+	showsZoomControl: {
+		type: 'Boolean',
+		default: true,
+	},
 	pointLatitude: {
 		type: 'number',
 		default: '37.334852',
@@ -97,7 +101,7 @@ registerBlockType(
 			align: [ 'wide', 'full' ],
 		},
 		edit: props => {
-			const { attributes: { showsMapTypeControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className, setAttributes } = props;
+			const { attributes: { showsMapTypeControl, showsZoomControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className, setAttributes } = props;
 			const toggleMapTypeControl = ( value ) => {
 				setAttributes( {showsMapTypeControl: !showsMapTypeControl } );
 			};
@@ -123,6 +127,12 @@ registerBlockType(
 								help={ showsMapTypeControl ? __('Map Type Control is visible.') : __('Map Type Control is hidden.') } 
 								checked={ showsMapTypeControl }
 								onChange={ value => { setAttributes( {showsMapTypeControl: !showsMapTypeControl } ) }  }
+							/>
+							<ToggleControl
+								label={__( 'Show Zoom Control' ) }
+								help={ showsZoomControl ? __('Zoom Control is visible.') : __('Zoom Control is hidden.') } 
+								checked={ showsZoomControl }
+								onChange={ value => { setAttributes( {showsZoomControl: !showsZoomControl } ) }  }
 							/>
 							<SelectControl
 								label={ __( 'Map Type' ) }
@@ -187,7 +197,7 @@ registerBlockType(
 		}, // end edit
 
 		save: props => {
-			const { attributes: { showsMapTypeControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType }, className, setAttributes } = props;
+			const { attributes: { showsMapTypeControl, showsCompass, showsZoomControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className } = props;
 			return (
 				<AppleMap 
 					className={ props.className }

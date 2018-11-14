@@ -3,13 +3,13 @@
 import 'apple-mapkit-js';
 import 'apple-mapkit-js/contains';
 
-var map, mapNode;
-var workAnnotation, work, pointLongitude, pointLatitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, showsMapTypeControl;
+var map, mapNode, workAnnotation, work, pointLongitude, pointLatitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, showsMapTypeControl;
 mapkit.draw = function( map ) {
 	console.log(map);
 	map.innerHTML = '';
 	mapType = mapNode.dataset.mapType;
 	showsMapTypeControl = mapNode.dataset.showsMapTypeControl;
+	showsZoomControl = mapNode.dataset.showsZoomControl;
 	pointLongitude = parseFloat(mapNode.dataset.pointLongitude);
 	pointLatitude = parseFloat(mapNode.dataset.pointLatitude);
 	pointTitle = mapNode.dataset.pointTitle;
@@ -19,6 +19,8 @@ mapkit.draw = function( map ) {
 
 	map.mapType = mapType;
 	map.showsMapTypeControl = showsMapTypeControl;
+	map.showsCompass = mapkit.FeatureVisibility.Adaptive;
+	map.showsZoomControl = showsZoomControl;
 
 	if (pointLongitude && pointLatitude) {
 		work = new mapkit.Coordinate(pointLatitude, pointLongitude);
