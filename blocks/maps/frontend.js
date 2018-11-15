@@ -3,7 +3,7 @@
 import 'apple-mapkit-js';
 import 'apple-mapkit-js/contains';
 
-var map, mapNode, workAnnotation, work, pointLongitude, pointLatitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, showsMapTypeControl;
+var map, mapNode, workAnnotation, showsZoomControl, work, pointLongitude, pointLatitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, showsMapTypeControl;
 mapkit.draw = function( map ) {
 	console.log(map);
 	map.innerHTML = '';
