@@ -5,7 +5,7 @@
  */
 import classnames from 'classnames';
 import AppleMap from './AppleMap';
-
+import CheckApi from './CheckApi';
 import Search from './Search';
 
 /**
@@ -30,6 +30,7 @@ const {
 } = wp.blocks;
 const {
 	InspectorControls,
+	InspectorAdvancedControls,
 	withColors,
 	PanelColorSettings,
 } = wp.editor;
@@ -79,6 +80,10 @@ const mapAttributes = {
 	pointColor: {
 		type: 'string',
 		default: '#000000',
+	},
+	authenticated: {
+		type: 'boolean',
+		default: false,
 	}
 };
 
@@ -101,22 +106,9 @@ registerBlockType(
 			align: [ 'wide', 'full' ],
 		},
 		edit: props => {
-			const { attributes: { showsMapTypeControl, showsZoomControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className, setAttributes } = props;
+			const { attributes: { authenticated, showsMapTypeControl, showsZoomControl, pointLatitude, pointLongitude, pointLocationName, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className, setAttributes } = props;
 			const toggleMapTypeControl = ( value ) => {
 				setAttributes( {showsMapTypeControl: !showsMapTypeControl } );
-			};
-			const startSearch = () => {
-				let search = new mapkit.Search();
-				if (searchQuery) {
-					search.search(searchQuery, (error, data) => {
-						if (error) {
-							return;
-						}
-						console.log(data);
-						setAttributes( { pointLatitude: data.places[0].coordinate.latitude } );
-						setAttributes( { pointLongitude: data.places[0].coordinate.longitude } );
-					} )
-				}
 			};
 			return (
 				<Fragment>
@@ -142,6 +134,7 @@ registerBlockType(
 							/>
 						</PanelBody>
 						<PanelBody title={ __( 'Location Settings' ) }>
+							<Search {...props} />
 							<TextControl
 								label={ __( 'Titel' ) }
 								value={ pointTitle }
@@ -167,7 +160,10 @@ registerBlockType(
 									},
 								] }
 							/>
-							<Search {...props} />
+						</PanelBody>
+					</InspectorControls>
+					<InspectorAdvancedControls>
+						<PanelBody title={ __( 'Location Settings' ) }>
 							<TextControl
 								label={ __( 'Latitude' ) }
 								value={ pointLatitude }
@@ -179,18 +175,22 @@ registerBlockType(
 								onChange={ value => { setAttributes( { pointLongitude: value } ) } }
 							/>
 						</PanelBody>
-					</InspectorControls>
-					<AppleMap 
-						className={ props.className }
-						showsMapTypeControl={ showsMapTypeControl }
-						mapType={ mapType }
-						pointTitle={ pointTitle }
-						pointSubtitle={ pointSubtitle }
-						pointGlyphText={ pointGlyphText }
-						pointLatitude={ pointLatitude }
-						pointLongitude={ pointLongitude }
-						pointColor={ pointColor }
-					/>
+					</InspectorAdvancedControls>
+					<CheckApi {...props} />
+					{ authenticated 
+						? <AppleMap {...props}
+							className={ props.className }
+							showsMapTypeControl={ showsMapTypeControl }
+							mapType={ mapType }
+							pointTitle={ pointTitle }
+							pointSubtitle={ pointSubtitle }
+							pointGlyphText={ pointGlyphText }
+							pointLatitude={ pointLatitude }
+							pointLongitude={ pointLongitude }
+							pointColor={ pointColor }
+						/>
+						: <p>__( 'The Map is not Authenticated. Please visit the Apple Map Settings in your Customizer and enter your Credentials.' )</p>
+					}
 				</Fragment>
 			);
 

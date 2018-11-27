@@ -1,6 +1,8 @@
 import 'apple-mapkit-js';
 import 'apple-mapkit-js/contains';
 
+const { Fragment } = wp.components;
+
 class AppleMap extends wp.element.Component { 
 	constructor(props) {
 		super(props)

@@ -1,0 +1,11 @@
+.popover-suggestion-list ul {
+  margin: 0;
+  padding: 5px; }
+  .popover-suggestion-list ul li {
+    margin: 0;
+    padding: 5px; }
+    .popover-suggestion-list ul li:not(:last-child) {
+      border-bottom: 1px dotted grey; }
+    .popover-suggestion-list ul li:hover {
+      cursor: pointer;
+      background-color: #fafafa; }
