@@ -8,7 +8,7 @@ class Search extends wp.element.Component {
 	constructor(props) {
 		super(props)
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSuggestionSelection = this.handleSuggestionSelection.bind(this);
+    this.handleSuggestionSelection = this.handleSuggestionSelection.bind(this);
 		this.state = {
 			query: '',
 			results: []
@@ -44,15 +44,15 @@ class Search extends wp.element.Component {
   }
 
   handleSuggestionSelection(event) {
-  	const { setAttributes } = this.props.props;
+  	const { setAttributes } = this.props;
   	const muid = event.target.dataset.muid;
   	const filteredArray = this.state.results.filter( item => muid === item.muid );
   	setAttributes( { pointLatitude: filteredArray[0].coordinate.latitude } );
-	setAttributes( { pointLongitude: filteredArray[0].coordinate.longitude } );
-	this.setState( {
-		query: '',
-		results: []
-	} )
+    setAttributes( { pointLongitude: filteredArray[0].coordinate.longitude } );
+  	this.setState( {
+  		query: '',
+  		results: []
+  	} )
   }
 
   render() {

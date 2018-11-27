@@ -15,7 +15,7 @@ function enqueue_block_editor_assets() {
 	wp_enqueue_script(
 		'jsforwp-blocks-js',
 		_get_plugin_url() . $block_path,
-		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components' ],
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor' ],
 		filemtime( _get_plugin_directory() . $block_path )
 	);
 
@@ -57,7 +57,7 @@ function enqueue_frontend_assets() {
 	wp_enqueue_script(
 		'jsforwp-blocks-frontend',
 		_get_plugin_url() . $block_path,
-		[],
+		[ 'wp-dom-ready' ],
 		filemtime( _get_plugin_directory() . $block_path )
 	);
 }

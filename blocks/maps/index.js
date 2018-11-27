@@ -167,7 +167,7 @@ registerBlockType(
 									},
 								] }
 							/>
-							<Search props={props} />
+							<Search {...props} />
 							<TextControl
 								label={ __( 'Latitude' ) }
 								value={ pointLatitude }

@@ -10,9 +10,6 @@ class AppleMap extends wp.element.Component {
 			markerAnnotation: {},
 		}
 	}
-	emptyComponent() {
-		document.getElementById('map').innerHTML = "";
-	}
 	componentDidMount() {
 		mapkit.init({
 			authorizationCallback: function(done) {
@@ -45,7 +42,7 @@ class AppleMap extends wp.element.Component {
 			markerAnnotation.selected = "true";
 			markerAnnotation.glyphText = this.props.pointGlyphText;  
 
-		const appleMap = new mapkit.Map('map');
+		const appleMap = new mapkit.Map( wp.element.findDOMNode(this) );
 			appleMap.mapType = this.props.mapType;
 			appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
 			appleMap.showsCompass = mapkit.FeatureVisibility.Adaptive;
@@ -64,7 +61,6 @@ class AppleMap extends wp.element.Component {
 		} )
 	}
 	componentDidUpdate() {
-
 		const newLocation = new mapkit.Coordinate( Number.parseFloat( this.props.pointLatitude ), Number.parseFloat( this.props.pointLongitude ) );
 
 		let markerCoordinate = this.state.markerCoordinate;

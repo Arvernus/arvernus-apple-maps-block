@@ -3,19 +3,17 @@
 import 'apple-mapkit-js';
 import 'apple-mapkit-js/contains';
 
-var map, mapNode, workAnnotation, showsZoomControl, work, pointLongitude, pointLatitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, showsMapTypeControl;
-mapkit.draw = function( map ) {
-	console.log(map);
+mapkit.draw = function( map, element ) {
 	map.innerHTML = '';
-	mapType = mapNode.dataset.mapType;
-	showsMapTypeControl = mapNode.dataset.showsMapTypeControl;
-	showsZoomControl = mapNode.dataset.showsZoomControl;
-	pointLongitude = parseFloat(mapNode.dataset.pointLongitude);
-	pointLatitude = parseFloat(mapNode.dataset.pointLatitude);
-	pointTitle = mapNode.dataset.pointTitle;
-	pointSubtitle = mapNode.dataset.pointSubtitle;
-	pointGlyphText = mapNode.dataset.pointGlyphText;
-	pointColor = mapNode.dataset.pointColor;
+	const mapType = element.dataset.mapType;
+	const showsMapTypeControl = element.dataset.showsMapTypeControl;
+	const showsZoomControl = element.dataset.showsZoomControl;
+	const pointLongitude = parseFloat(element.dataset.pointLongitude);
+	const pointLatitude = parseFloat(element.dataset.pointLatitude);
+	const pointTitle = element.dataset.pointTitle;
+	const pointSubtitle = element.dataset.pointSubtitle;
+	const pointGlyphText = element.dataset.pointGlyphText;
+	const pointColor = element.dataset.pointColor;
 
 	map.mapType = mapType;
 	map.showsMapTypeControl = showsMapTypeControl;
@@ -23,8 +21,8 @@ mapkit.draw = function( map ) {
 	map.showsZoomControl = showsZoomControl;
 
 	if (pointLongitude && pointLatitude) {
-		work = new mapkit.Coordinate(pointLatitude, pointLongitude);
-		workAnnotation = new mapkit.MarkerAnnotation(work);
+		const work = new mapkit.Coordinate(pointLatitude, pointLongitude);
+		const workAnnotation = new mapkit.MarkerAnnotation(work);
 
 		workAnnotation.color = pointColor; 
 		workAnnotation.title = pointTitle;
@@ -41,34 +39,33 @@ mapkit.draw = function( map ) {
 	}
 }
 
-document.addEventListener('readystatechange', function(event) {
-	if (event.target.readyState === "interactive") {
-		mapkit.init({
-			authorizationCallback: function(done) {
-				const url = `${window.location.origin}/wp-json/AppleMapKit/v1/GetJWT/`;
-				fetch( url, {
-					method: "GET",
-					headers: {
-						Accept: 'text/plain',
-					},
-				},)
-				.then(function(response) {
-					if (response.status >= 200 && response.status < 400 ) {
-						return response.text();
-					}
-					else {
-						throw `Response resulted in error ${response.status}`;
-					}
-				})
-				.then(function(result) {
-					done(result)
-				});
-			}
-		});
-	}
-	if (event.target.readyState === "complete") {
-		mapNode = document.querySelector('#map');
-		map = new mapkit.Map(mapNode);
-		mapkit.draw( map );
-	}
-}, false );
+wp.domReady( function() {
+	mapkit.init({
+		authorizationCallback: function(done) {
+			const url = `${window.location.origin}/wp-json/AppleMapKit/v1/GetJWT/`;
+			fetch( url, {
+				method: "GET",
+				headers: {
+					Accept: 'text/plain',
+				},
+			},)
+			.then(function(response) {
+				if (response.status >= 200 && response.status < 400 ) {
+					return response.text();
+				}
+				else {
+					throw `Response resulted in error ${response.status}`;
+				}
+			})
+			.then(function(result) {
+				done(result)
+			});
+		}
+	})
+	const mapElements = document.querySelectorAll('.wp-block-mapkitjs-map');
+	// debugger;
+	mapElements.forEach( element => {
+		const map = new mapkit.Map( element );
+		mapkit.draw( map, element );
+	})
+} )
