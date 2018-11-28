@@ -15,23 +15,9 @@ class AppleMap extends wp.element.Component {
 	componentDidMount() {
 		mapkit.init({
 			authorizationCallback: function(done) {
-				fetch(`${window.location.origin}/wp-json/AppleMapKit/v1/GetJWT/`, {
-					method: "GET",
-					headers: {
-						Accept: 'text/plain',
-					},
-				},)
-				.then(function(response) {
-					if (response.status >= 200 && response.status < 400 ) {
-						return response.text();
-					}
-					else {
-						throw `Response resulted in error ${response.status}`;
-					}
-				})
-				.then(function(result) {
-					done(result)
-				});
+				wp.apiFetch( { path: '/AppleMapKit/v1/GetJWT/' } ).then( jwtToken => {
+				    done(jwtToken);
+				} );
 			}
 		});
 

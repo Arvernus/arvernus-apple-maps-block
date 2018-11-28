@@ -6,21 +6,11 @@ class CheckApi extends wp.element.Component {
 	}
 	componentDidMount() {
 		const { setAttributes } = this.props;
-		fetch(`${window.location.origin}/wp-json/AppleMapKit/v1/GetJWT/`, {
-			method: "GET",
-			headers: {
-				Accept: 'text/plain',
-			},
-		})
-		.then(function(response) {
-			if (response.status >= 200 && response.status < 400 ) {
+		wp.apiFetch( { path: '/AppleMapKit/v1/GetJWT/' } )
+			.then( response => {
 				setAttributes( { authenticated: true } );
-				return response.text();
-			}
-			else {
-				setAttributes( { authenticated: false } );
-			}
-		});
+				return response;
+			});
 	}
 	render() {
 		return (

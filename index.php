@@ -48,6 +48,5 @@ function _get_plugin_url() {
 include __DIR__ . '/lib/enqueue-scripts.php';
 
 include __DIR__ . '/lib/jwt-auth.php';
-include __DIR__ . '/lib/jwt-auth-v2.php';
 include __DIR__ . '/lib/customizer.php';
 

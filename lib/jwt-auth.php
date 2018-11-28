@@ -19,23 +19,6 @@ function MapKitEncode($data) {
 	return rtrim($Res, '=');
 }
 
-
-// Filter REST Response and convert it to text/plain in our case
-// reference https://github.com/WP-API/WP-API/blob/develop/lib/infrastructure/class-wp-rest-server.php
-// serve_request() function
-add_filter( 'rest_pre_serve_request', 'MapKit_rest_pre_serve_request', 10, 4 );
-function MapKit_rest_pre_serve_request( $served, $result, $request, $server ) {
-	switch ( $request->get_route() ) {
-		case '/AppleMapKit/v1/GetJWT':
-			header( 'Content-Type: text/plain; charset=' . get_option( 'blog_charset' ) );
-			echo $result->data;
-			$served = true; // tells the WP-API that we sent the response already
-			break;
-		}
-	return $served;
-}
-
-
 // Generate an Apple MapKit JWT
 //
 function MapKitGetJWT( $data ) {
