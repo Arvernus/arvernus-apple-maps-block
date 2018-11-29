@@ -46,12 +46,12 @@ wp.domReady( function() {
 			fetch( url, {
 				method: "GET",
 				headers: {
-					Accept: 'text/plain',
+					Accept: 'Application/JSON',
 				},
 			},)
 			.then(function(response) {
 				if (response.status >= 200 && response.status < 400 ) {
-					return response.text();
+					return response.json();
 				}
 				else {
 					throw `Response resulted in error ${response.status}`;
@@ -61,7 +61,7 @@ wp.domReady( function() {
 				done(result)
 			});
 		}
-	})
+	});
 	const mapElements = document.querySelectorAll('.wp-block-mapkitjs-map');
 	// debugger;
 	mapElements.forEach( element => {
