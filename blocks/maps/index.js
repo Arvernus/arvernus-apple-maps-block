@@ -11,11 +11,11 @@ import Search from './Search';
 /**
  * WordPress dependencies
  */
-const { 
+const {
 	__, 
 	sprintf 
 } = wp.i18n;
-const { 
+const {
 	Fragment,
 } = wp.element;
 const {
@@ -59,23 +59,23 @@ const mapAttributes = {
 	},
 	pointLatitude: {
 		type: 'number',
-		default: '37.334852',
+		default: '51.5237503',
 	},
 	pointLongitude: {
 		type: 'number',
-		default: '-122.009163',
+		default: '-0.158555',
 	},
 	pointTitle: {
 		type: 'string',
-		default: 'Title',
+		default: '221B Baker Street',
 	},
 	pointSubtitle: {
 		type: 'string',
-		default: 'Subtitle',
+		default: 'London',
 	},
 	pointGlyphText: {
 		type: 'string',
-		default: 'T',
+		default: '',
 	},
 	pointColor: {
 		type: 'string',
