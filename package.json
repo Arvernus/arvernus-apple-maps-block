@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "cross-env BABEL_ENV=default webpack --watch",
-    "test": "jest --watch *.js",
-    "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack -p",
+    "dev": "cross-env webpack --watch",
+    "build": "cross-env NODE_ENV=production webpack -p",
     "bundle": "gulp"
   },
   "repository": {
