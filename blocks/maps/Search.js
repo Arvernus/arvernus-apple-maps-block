@@ -11,7 +11,7 @@ class Search extends wp.element.Component {
 		this.handleSuggestionSelection = this.handleSuggestionSelection.bind(this);
 		this.state = {
 			query: '',
-			results: ''
+			results: []
 		}
 	}
 
@@ -64,7 +64,7 @@ class Search extends wp.element.Component {
 					value={ this.state.query }
 					onChange={ newValue => { this.handleInputChange(newValue) } }
 				/>
-				{ this.state.results &&
+				{ this.state.results.length > 0 &&
 					<Popover position="bottom" className="popover-suggestion-list">
 						<Suggestions results={ this.state.results } callback={ this.handleSuggestionSelection } />
 					</Popover>
