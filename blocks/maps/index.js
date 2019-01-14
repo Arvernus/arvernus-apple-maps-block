@@ -189,7 +189,7 @@ registerBlockType(
 							pointLongitude={ pointLongitude }
 							pointColor={ pointColor }
 						/>
-						: <p>__( 'The Map is not Authenticated. Please visit the Apple Map Settings in your Customizer and enter your Credentials.' )</p>
+						: <p>{__( 'The Map is not Authenticated. Please visit the Apple Map Settings in your Customizer and enter your Credentials.' )}</p>
 					}
 				</Fragment>
 			);

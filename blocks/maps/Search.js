@@ -63,9 +63,10 @@ class Search extends wp.element.Component {
 					placeholder="Name or Adress of a Place..."
 					value={ this.state.query }
 					onChange={ newValue => { this.handleInputChange(newValue) } }
+					autocomplete="off"
 				/>
 				{ this.state.results.length > 0 &&
-					<Popover position="bottom" className="popover-suggestion-list">
+					<Popover position="bottom" className="popover-suggestion-list" focusOnMount="false">
 						<Suggestions results={ this.state.results } callback={ this.handleSuggestionSelection } />
 					</Popover>
 				}
