@@ -49,4 +49,4 @@ include __DIR__ . '/lib/enqueue-scripts.php';
 
 include __DIR__ . '/lib/jwt-auth.php';
 include __DIR__ . '/lib/customizer.php';
-
+include __DIR__ . '/lib/settings-endpoint.php';
