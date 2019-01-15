@@ -11,15 +11,15 @@ class CheckApi extends wp.element.Component {
     }).catch(error => {
       console.log(error)
     });
-    wp.apiFetch({
-      path: "/AppleMaps/v1/private_key",
-      data: {
-        body: 'Hallo',
-      },
-      method: 'POST',
-    }).then(response => {
-      console.log(response);
-    }).catch(error => { console.log(error) })
+  }
+  componentDidUpdate() {
+    const { attributes: { authenticated }, setAttributes } = this.props;
+    wp.apiFetch({ path: "/AppleMapKit/v1/GetJWT/" }).then(response => {
+      setAttributes({ authenticated: true });
+      return response;
+    }).catch(error => {
+      console.log(error)
+    });
   }
   render() {
     return null;

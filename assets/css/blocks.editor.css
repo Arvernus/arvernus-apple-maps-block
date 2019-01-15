@@ -9,3 +9,7 @@
     .popover-suggestion-list ul li:hover {
       cursor: pointer;
       background-color: #fafafa; }
+
+[data-type="mapkitjs/map"] .overlay {
+  width: 100%;
+  height: 100%; }

@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import AppleMap from './AppleMap';
 import CheckApi from './CheckApi';
 import Search from './Search';
+import Authenticate from './Authenticate';
 
 /**
  * WordPress dependencies
@@ -113,6 +114,9 @@ registerBlockType(
 			return (
 				<Fragment>
 					<InspectorControls>
+						<PanelBody title={ __( 'Authentication' ) }>
+							<Authenticate />
+						</PanelBody>
 						<PanelBody title={ __( 'Map Settings' ) }>
 							<ToggleControl
 								label={__( 'Show Map Type Control' ) }

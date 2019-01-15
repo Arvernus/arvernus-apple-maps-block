@@ -22,18 +22,21 @@ function MapKitEncode($data) {
 // Generate an Apple MapKit JWT
 //
 function MapKitGetJWT( $data ) {
+
+	$private_key = json_decode(get_option( 'apple_maps_private_key' ));
+
 	$Header = [
 		'alg' => 'ES256',
 		'typ' => 'JWT',
-		'kid' => get_theme_mod('MapKitKeyID')
+		'kid' => json_decode(get_option( 'apple_maps_key_id' ))
 	];
 	$Body = [
-		'iss' => get_theme_mod('MapKitTeamID'),
+		'iss' => json_decode(get_option( 'apple_maps_team_id' )),
 		'iat' => time(),
-		'exp' => time() + get_theme_mod('MapKitExpirationTime')
+		'exp' => time() + 30
 	];
 	$Payload = MapKitEncode(json_encode($Header)) . '.' . MapKitEncode(json_encode($Body));
-	if(!$Key = openssl_pkey_get_private(get_theme_mod('MapKitPrivatKey'))) {
+	if(!$Key = openssl_pkey_get_private($private_key)) {
 		return new WP_Error( 'NoKey', 'Missing or Invalid Private Key' );
 	}
 	if(!openssl_sign($Payload, $Res, $Key, OPENSSL_ALGO_SHA256)) {

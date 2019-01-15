@@ -4,22 +4,23 @@ import "apple-mapkit-js/contains";
 const { Fragment } = wp.components;
 
 class AppleMap extends wp.element.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			appleMap: {},
-			markerCoordinate: {},
-			markerAnnotation: {}
-		};
-	}
-	componentDidMount() {
-		mapkit.init( {
-			authorizationCallback: function(done) {
-				wp.apiFetch({ path: "/AppleMapKit/v1/GetJWT/" }).then(jwtToken => {
-					done(jwtToken);
-				});
-			}
-		});
+  constructor(props) {
+    super(props);
+    this.mapDomNode = React.createRef();
+    this.state = {
+      appleMap: {},
+      markerCoordinate: {},
+      markerAnnotation: {}
+    };
+  }
+  componentDidMount() {
+    mapkit.init({
+      authorizationCallback: function (done) {
+        wp.apiFetch({ path: "/AppleMapKit/v1/GetJWT/" }).then(jwtToken => {
+          done(jwtToken);
+        });
+      }
+    });
 
     const markerCoordinate = new mapkit.Coordinate(
       Number.parseFloat(this.props.pointLatitude),
@@ -32,8 +33,7 @@ class AppleMap extends wp.element.Component {
     markerAnnotation.subtitle = this.props.pointSubtitle;
     markerAnnotation.selected = "true";
     markerAnnotation.glyphText = this.props.pointGlyphText;
-
-    const appleMap = new mapkit.Map(wp.element.findDOMNode(this));
+    const appleMap = new mapkit.Map(this.mapDomNode.current);
     appleMap.mapType = this.props.mapType;
     appleMap.showsMapTypeControl = this.props.showsMapTypeControl;
     appleMap.showsCompass = mapkit.FeatureVisibility.Adaptive;
@@ -86,6 +86,7 @@ class AppleMap extends wp.element.Component {
   render() {
     return (
       <div
+        ref={this.mapDomNode}
         className={this.props.className}
         id="map"
         data-shows-map-type-control={this.props.showsMapTypeControl}
