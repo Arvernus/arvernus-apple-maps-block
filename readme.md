@@ -6,9 +6,9 @@
 
 ### Toolbar
 
-- **Wide Alignement**: Toggle Button to enable the wide alignement of the block
-- **Full Alignement**: Toggle Button to enable the full alignement of the block
-  (\* only one of these can be active at once)
+- **Wide Alignement**: Toggle Button to enable the wide alignement of the block [^1]
+- **Full Alignement**: Toggle Button to enable the full alignement of the block [^1]
+  [^1]: (only one of these can be active at once)
 
 ### Authentication
 
