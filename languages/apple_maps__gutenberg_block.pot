@@ -1,0 +1,100 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"X-Generator: babel-plugin-makepot\n"
+
+#: blocks/maps/Search.js:70
+msgid "Search"
+msgstr ""
+
+#: blocks/maps/Search.js:71
+msgid "Name or Adress of a Place..."
+msgstr ""
+
+#: blocks/maps/ToggleSidebarButton.js:18
+msgid "Open Block Settings"
+msgstr ""
+
+#: blocks/maps/index.js:137
+msgid "Authentication"
+msgstr ""
+
+#: blocks/maps/index.js:141
+msgid "Map Settings"
+msgstr ""
+
+#: blocks/maps/index.js:143
+msgid "Show Map Type Control"
+msgstr ""
+
+#: blocks/maps/index.js:146
+msgid "Map Type Control is visible."
+msgstr ""
+
+#: blocks/maps/index.js:150
+msgid "Map Type Control is hidden."
+msgstr ""
+
+#: blocks/maps/index.js:161
+msgid "Show Zoom Control"
+msgstr ""
+
+#: blocks/maps/index.js:164
+msgid "Zoom Control is visible."
+msgstr ""
+
+#: blocks/maps/index.js:168
+msgid "Zoom Control is hidden."
+msgstr ""
+
+#: blocks/maps/index.js:176
+msgid "Map Type"
+msgstr ""
+
+#: blocks/maps/index.js:189
+msgid "Titel"
+msgstr ""
+
+#: blocks/maps/index.js:196
+msgid "Subtitle"
+msgstr ""
+
+#: blocks/maps/index.js:203
+msgid "Glyph Text"
+msgstr ""
+
+#: blocks/maps/index.js:210
+msgid "Color Settings"
+msgstr ""
+
+#: blocks/maps/index.js:217
+msgid "Glyph Color"
+msgstr ""
+
+#: blocks/maps/index.js:225
+msgid "Location Settings"
+msgstr ""
+
+#: blocks/maps/index.js:228
+msgid "Latitude"
+msgstr ""
+
+#: blocks/maps/index.js:235
+msgid "Longitude"
+msgstr ""
+
+#: blocks/maps/index.js:259
+msgid "Please enter an API key in the block settings"
+msgstr ""
+
+#: blocks/maps/index.js:88
+msgid "Satellite"
+msgstr ""
+
+#: blocks/maps/index.js:92
+msgid "Hybrid"
+msgstr ""
+
+#: blocks/maps/index.js:96
+msgid "Standard"
+msgstr ""

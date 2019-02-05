@@ -4,6 +4,7 @@
  * Description: Creates a Gutenberg Block of the Apple MapKit JS library.
  * Author: Arvernus.info
  * Author URI: https://arvernus.info
+ * Text Domain: apple_maps__gutenberg_block
  * Version: 1.0.1
  */
 
@@ -43,6 +44,17 @@ function _get_plugin_url() {
 
 	return $plugin_url;
 }
+
+/**
+ * Load plugin textdomain.
+ *
+ * @since 1.0.0
+ */
+function apple_maps__gutenberg_block_load_textdomain() {
+	load_plugin_textdomain( 'apple_maps__gutenberg_block', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+  }
+  
+  add_action( 'init', __NAMESPACE__ . '\apple_maps__gutenberg_block_load_textdomain' );
 
 // Enqueue JS and CSS
 include __DIR__ . '/lib/enqueue-scripts.php';

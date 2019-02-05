@@ -1,6 +1,7 @@
 import "apple-mapkit-js";
 import "apple-mapkit-js/contains";
 
+const { __, sprintf } = wp.i18n;
 const { Fragment } = wp.components;
 
 class AppleMap extends wp.element.Component {
@@ -15,7 +16,7 @@ class AppleMap extends wp.element.Component {
   }
   componentDidMount() {
     mapkit.init({
-      authorizationCallback: function (done) {
+      authorizationCallback: function(done) {
         wp.apiFetch({ path: "/AppleMapKit/v1/GetJWT/" }).then(jwtToken => {
           done(jwtToken);
         });

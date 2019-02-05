@@ -2,62 +2,51 @@
 
 namespace Arvernus\Apple_Maps_Gutenberg_Block;
 
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets' );
-/**
- * Enqueue block editor only JavaScript and CSS.
- */
-function enqueue_block_editor_assets() {
-	// Make paths variables so we don't write em twice ;)
-	$block_path = '/assets/js/editor.blocks.js';
-	$style_path = '/assets/css/blocks.editor.css';
 
-	// Enqueue the bundled block JS file
-	wp_enqueue_script(
+function register_block_assets() {
+
+	$editor_js_path = '/assets/js/editor.blocks.js';
+	wp_register_script(
 		'arvernus-apple-maps-blocks-js',
-		_get_plugin_url() . $block_path,
+		_get_plugin_url() . $editor_js_path,
 		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor' ],
-		filemtime( _get_plugin_directory() . $block_path )
+		filemtime( _get_plugin_directory() . $editor_js_path )
 	);
 
-	// Enqueue optional editor only styles
-	wp_enqueue_style(
+	$editor_style_path = '/assets/css/blocks.editor.css';
+	wp_register_style(
 		'arvernus-apple-maps-blocks-editor-css',
-		_get_plugin_url() . $style_path,
+		_get_plugin_url() . $editor_style_path,
 		[ 'wp-blocks' ],
-		filemtime( _get_plugin_directory() . $style_path )
+		filemtime( _get_plugin_directory() . $editor_style_path )
 	);
-}
 
-add_action( 'enqueue_block_assets', __NAMESPACE__ . '\enqueue_assets' );
-/**
- * Enqueue front end and editor JavaScript and CSS assets.
- */
-function enqueue_assets() {
-	$style_path = '/assets/css/blocks.style.css';
-	wp_enqueue_style(
-		'arvernus-apple-maps-blocks',
-		_get_plugin_url() . $style_path,
-		null,
-		filemtime( _get_plugin_directory() . $style_path )
-	);
-}
-
-add_action( 'enqueue_block_assets', __NAMESPACE__ . '\enqueue_frontend_assets' );
-/**
- * Enqueue frontend JavaScript and CSS assets.
- */
-function enqueue_frontend_assets() {
-
-	// If in the backend, bail out.
-	if ( is_admin() ) {
-		return;
-	}
-
-	$block_path = '/assets/js/frontend.blocks.js';
-	wp_enqueue_script(
+	$frontend_js_path = '/assets/js/frontend.blocks.js';
+	wp_register_script(
 		'arvernus-apple-maps-blocks-frontend',
-		_get_plugin_url() . $block_path,
-		[ 'wp-dom-ready' ],
-		filemtime( _get_plugin_directory() . $block_path )
+		_get_plugin_url() . $frontend_js_path,
+		[ 'wp-i18n', 'wp-dom-ready' ],
+		filemtime( _get_plugin_directory() . $frontend_js_path )
 	);
+
+	$frontend_style_path = '/assets/css/blocks.style.css';
+	wp_register_style(
+		'arvernus-apple-maps-blocks',
+		_get_plugin_url() . $frontend_style_path,
+		null,
+		filemtime( _get_plugin_directory() . $frontend_style_path )
+	);
+
+	wp_set_script_translations( 'arvernus-apple-maps-blocks-js', 'apple_maps__gutenberg_block', plugin_dir_path( __FILE__ ) . 'languages' );
+
+	wp_set_script_translations( 'arvernus-apple-maps-blocks-frontend', 'apple_maps__gutenberg_block', plugin_dir_path( __FILE__ ) . 'languages' );
+
+	register_block_type( 'mapkitjs/map', array(
+		'editor_script' => 'arvernus-apple-maps-blocks-js',
+		'editor_style' => 'arvernus-apple-maps-blocks-editor-css',
+		'script' => 'arvernus-apple-maps-blocks-frontend',
+		'style' => 'arvernus-apple-maps-blocks',
+	) );
 }
+
+add_action('init', __NAMESPACE__.'\register_block_assets');
