@@ -9,7 +9,7 @@
 - **Wide Alignement**: Toggle Button to enable the wide alignement of the block <sup>1</sup>
 - **Full Alignement**: Toggle Button to enable the full alignement of the block <sup>1</sup>
 
-  <sup>1</sup> (only one of these can be active at once)
+> <sup>1</sup> (only one of these can be active at once)
 
 ### Authentication
 
