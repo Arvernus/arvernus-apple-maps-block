@@ -8,13 +8,15 @@ import AppleMap from './AppleMap';
 import CheckApi from './CheckApi';
 import Search from './Search';
 import Authenticate from './Authenticate';
+import ToggleSidebarButton from "./ToggleSidebarButton";
+
 
 /**
  * WordPress dependencies
  */
 const {
-	__, 
-	sprintf 
+	__,
+	sprintf
 } = wp.i18n;
 const {
 	Fragment,
@@ -27,7 +29,7 @@ const {
 	Button,
 } = wp.components;
 const {
-  registerBlockType,
+	registerBlockType,
 } = wp.blocks;
 const {
 	InspectorControls,
@@ -44,7 +46,7 @@ import './editor.scss';
 
 const mapAttributes = {
 	mapType: {
-		type: 'string',	
+		type: 'string',
 		default: mapkit.Map.MapTypes.Standard,
 	},
 	searchQuery: {
@@ -89,9 +91,9 @@ const mapAttributes = {
 };
 
 const mapTypeOptions = [
-	{ value: mapkit.Map.MapTypes.Satellite, label: __( 'Satellite' ) },
-	{ value: mapkit.Map.MapTypes.Hybrid, label: __( 'Hybrid' ) },
-	{ value: mapkit.Map.MapTypes.Standard, label: __( 'Standard' ) }
+	{ value: mapkit.Map.MapTypes.Satellite, label: __('Satellite') },
+	{ value: mapkit.Map.MapTypes.Hybrid, label: __('Hybrid') },
+	{ value: mapkit.Map.MapTypes.Standard, label: __('Standard') }
 ];
 
 registerBlockType(
@@ -104,96 +106,96 @@ registerBlockType(
 		category: 'common',
 		attributes: mapAttributes,
 		supports: {
-			align: [ 'wide', 'full' ],
+			align: ['wide', 'full'],
 		},
 		edit: props => {
 			const { attributes: { authenticated, showsMapTypeControl, showsZoomControl, pointLatitude, pointLongitude, pointLocationName, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className, setAttributes } = props;
-			const toggleMapTypeControl = ( value ) => {
-				setAttributes( {showsMapTypeControl: !showsMapTypeControl } );
+			const toggleMapTypeControl = (value) => {
+				setAttributes({ showsMapTypeControl: !showsMapTypeControl });
 			};
 			return (
 				<Fragment>
 					<InspectorControls>
-						<PanelBody title={ __( 'Authentication' ) }>
+						<PanelBody title={__('Authentication')}>
 							<Authenticate />
 						</PanelBody>
-						<PanelBody title={ __( 'Map Settings' ) }>
+						<PanelBody title={__('Map Settings')}>
 							<ToggleControl
-								label={__( 'Show Map Type Control' ) }
-								help={ showsMapTypeControl ? __('Map Type Control is visible.') : __('Map Type Control is hidden.') } 
-								checked={ showsMapTypeControl }
-								onChange={ value => { setAttributes( {showsMapTypeControl: !showsMapTypeControl } ) }  }
+								label={__('Show Map Type Control')}
+								help={showsMapTypeControl ? __('Map Type Control is visible.') : __('Map Type Control is hidden.')}
+								checked={showsMapTypeControl}
+								onChange={value => { setAttributes({ showsMapTypeControl: !showsMapTypeControl }) }}
 							/>
 							<ToggleControl
-								label={__( 'Show Zoom Control' ) }
-								help={ showsZoomControl ? __('Zoom Control is visible.') : __('Zoom Control is hidden.') } 
-								checked={ showsZoomControl }
-								onChange={ value => { setAttributes( {showsZoomControl: !showsZoomControl } ) }  }
+								label={__('Show Zoom Control')}
+								help={showsZoomControl ? __('Zoom Control is visible.') : __('Zoom Control is hidden.')}
+								checked={showsZoomControl}
+								onChange={value => { setAttributes({ showsZoomControl: !showsZoomControl }) }}
 							/>
 							<SelectControl
-								label={ __( 'Map Type' ) }
-								value={ mapType }
-								onChange={ value => { setAttributes( { mapType: value } ) } }
-								options={ mapTypeOptions }
+								label={__('Map Type')}
+								value={mapType}
+								onChange={value => { setAttributes({ mapType: value }) }}
+								options={mapTypeOptions}
 							/>
 						</PanelBody>
-						<PanelBody title={ __( 'Location Settings' ) }>
+						<PanelBody title={__('Location Settings')}>
 							<Search {...props} />
 							<TextControl
-								label={ __( 'Titel' ) }
-								value={ pointTitle }
-								onChange={ value => { setAttributes( { pointTitle: value } ) } }
+								label={__('Titel')}
+								value={pointTitle}
+								onChange={value => { setAttributes({ pointTitle: value }) }}
 							/>
 							<TextControl
-								label={ __( 'Subtitle' ) }
-								value={ pointSubtitle }
-								onChange={ value => { setAttributes( { pointSubtitle: value } ) } }
+								label={__('Subtitle')}
+								value={pointSubtitle}
+								onChange={value => { setAttributes({ pointSubtitle: value }) }}
 							/>
 							<TextControl
-								label={ __( 'Glyph Text' ) }
-								value={ pointGlyphText }
-								onChange={ value => { setAttributes( { pointGlyphText: value } ) } }
+								label={__('Glyph Text')}
+								value={pointGlyphText}
+								onChange={value => { setAttributes({ pointGlyphText: value }) }}
 							/>
 							<PanelColorSettings
-								title={ __( 'Color Settings' ) }
-								colorSettings={ [
+								title={__('Color Settings')}
+								colorSettings={[
 									{
 										value: pointColor,
-										onChange: value => { setAttributes( { pointColor: value } ) },
-										label: __( 'Glyph Color' ),
+										onChange: value => { setAttributes({ pointColor: value }) },
+										label: __('Glyph Color'),
 									},
-								] }
+								]}
 							/>
 						</PanelBody>
 					</InspectorControls>
 					<InspectorAdvancedControls>
-						<PanelBody title={ __( 'Location Settings' ) }>
+						<PanelBody title={__('Location Settings')}>
 							<TextControl
-								label={ __( 'Latitude' ) }
-								value={ pointLatitude }
-								onChange={ value => { setAttributes( { pointLatitude: value } ) } }
+								label={__('Latitude')}
+								value={pointLatitude}
+								onChange={value => { setAttributes({ pointLatitude: value }) }}
 							/>
 							<TextControl
-								label={ __( 'Longitude' ) }
-								value={ pointLongitude }
-								onChange={ value => { setAttributes( { pointLongitude: value } ) } }
+								label={__('Longitude')}
+								value={pointLongitude}
+								onChange={value => { setAttributes({ pointLongitude: value }) }}
 							/>
 						</PanelBody>
 					</InspectorAdvancedControls>
 					<CheckApi {...props} />
-					{ authenticated 
+					{authenticated
 						? <AppleMap {...props}
-							className={ props.className }
-							showsMapTypeControl={ showsMapTypeControl }
-							mapType={ mapType }
-							pointTitle={ pointTitle }
-							pointSubtitle={ pointSubtitle }
-							pointGlyphText={ pointGlyphText }
-							pointLatitude={ pointLatitude }
-							pointLongitude={ pointLongitude }
-							pointColor={ pointColor }
+							className={props.className}
+							showsMapTypeControl={showsMapTypeControl}
+							mapType={mapType}
+							pointTitle={pointTitle}
+							pointSubtitle={pointSubtitle}
+							pointGlyphText={pointGlyphText}
+							pointLatitude={pointLatitude}
+							pointLongitude={pointLongitude}
+							pointColor={pointColor}
 						/>
-						: <p>{__( 'The Map is not Authenticated. Please visit the Apple Map Settings in your Customizer and enter your Credentials.' )}</p>
+						: <p>{__('Please enter an API key in the block settings') + " "}<ToggleSidebarButton /></p>
 					}
 				</Fragment>
 			);
@@ -203,17 +205,17 @@ registerBlockType(
 		save: props => {
 			const { attributes: { showsMapTypeControl, showsCompass, showsZoomControl, pointLatitude, pointLongitude, pointTitle, pointSubtitle, pointGlyphText, pointColor, mapType, searchQuery }, className } = props;
 			return (
-				<AppleMap 
-					className={ props.className }
-					showsMapTypeControl={ showsMapTypeControl }
-					mapType={ mapType }
-					pointTitle={ pointTitle }
-					pointSubtitle={ pointSubtitle }
-					pointGlyphText={ pointGlyphText }
-					pointLatitude={ pointLatitude }
-					pointLongitude={ pointLongitude }
-					pointColor={ pointColor }
+				<AppleMap
+					className={props.className}
+					showsMapTypeControl={showsMapTypeControl}
+					mapType={mapType}
+					pointTitle={pointTitle}
+					pointSubtitle={pointSubtitle}
+					pointGlyphText={pointGlyphText}
+					pointLatitude={pointLatitude}
+					pointLongitude={pointLongitude}
+					pointColor={pointColor}
 				/>
 			);
 		},
-} );
+	});
