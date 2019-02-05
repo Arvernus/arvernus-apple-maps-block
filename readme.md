@@ -11,19 +11,21 @@
 
 > <sup>1</sup> (only one of these can be active at once)
 
-### Authentication
+### Sidebar
+
+#### Authentication
 
 - **Private Key**: Textarea to enter the Private Key provided by Apple
 - **Key ID**: Textfield to enter the Key Id provided by Apple
 - **Team ID**: Textfield to enter the Team Id provided by Apple
 
-### Map Settings
+#### Map Settings
 
 - **Show Map Type Control**:
 - **Show Zoom Controll**:
 - **Map Type**:
 
-### Location Settings
+#### Location Settings
 
 - **Search**:
 - **Title**:
@@ -31,7 +33,7 @@
 - **Glyph Text**:
 - **Glyph Color**:
 
-### Advanced Settings
+#### Advanced Settings
 
 - **Latitude**:
 - **Longitude**:
