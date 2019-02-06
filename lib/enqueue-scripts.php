@@ -41,12 +41,6 @@ function register_block_assets() {
 
 	wp_set_script_translations( 'arvernus-apple-maps-editor-blocks', 'arvernus-apple-maps-block', plugin_dir_path( __FILE__ ) . 'languages' );
 
-	if ( function_exists( 'gutenberg_get_jed_locale_data' ) ) {
-		$locale  = gutenberg_get_jed_locale_data( 'arvernus-apple-maps-block' );
-		$content = 'wp.i18n.setLocaleData( ' . json_encode( $locale ) . ', "arvernus-apple-maps-block" );';
-		wp_script_add_data( 'arvernus-apple-maps-blocks', 'data', $content );
-	}
-
 	register_block_type( 'mapkitjs/map', array(
 		'editor_script' => 'arvernus-apple-maps-blocks',
 		'editor_style' => 'arvernus-apple-maps-blocks-editor-style',
