@@ -15,7 +15,7 @@ const ToggleSidebarButton = ({
   if (isEditorSidebarOpened) return null;
   return (
     <Button className="is-button is-primary" onClick={openGeneralSidebar}>
-      {__("Open Block Settings", "apple_maps__gutenberg_block")}
+      {__("Open Block Settings", "arvernus-apple-maps-block")}
     </Button>
   );
 };

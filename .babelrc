@@ -4,7 +4,7 @@
     [
       "@wordpress/babel-plugin-makepot",
       {
-        "output": "languages/apple_maps__gutenberg_block.pot"
+        "output": "languages/arvernus-apple-maps-block.pot"
       }
     ]
   ]

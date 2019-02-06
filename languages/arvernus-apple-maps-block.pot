@@ -1,0 +1,116 @@
+# Copyright (C) 2019 Arvernus.info
+# This file is distributed under the same license as the Apple Maps Block plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Apple Maps Block 1.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/arvernus-apple-maps-block\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-02-06T08:34:50+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.1.0\n"
+"X-Domain: arvernus-apple-maps-block\n"
+
+#. Plugin Name of the plugin
+msgid "Apple Maps Block"
+msgstr ""
+
+#. Description of the plugin
+msgid "Creates a Gutenberg Block of the Apple MapKit JS library."
+msgstr ""
+
+#. Author of the plugin
+msgid "Arvernus.info"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://arvernus.info"
+msgstr ""
+
+#: blocks/maps/ToggleSidebarButton.js:18
+msgid "Open Block Settings"
+msgstr ""
+
+#: blocks/maps/index.js:88
+msgid "Satellite"
+msgstr ""
+
+#: blocks/maps/index.js:92
+msgid "Hybrid"
+msgstr ""
+
+#: blocks/maps/index.js:96
+msgid "Standard"
+msgstr ""
+
+#: blocks/maps/index.js:136
+msgid "Authentication"
+msgstr ""
+
+#: blocks/maps/index.js:139
+msgid "Map Settings"
+msgstr ""
+
+#: blocks/maps/index.js:141
+msgid "Show Map Type Control"
+msgstr ""
+
+#: blocks/maps/index.js:144
+msgid "Map Type Control is visible."
+msgstr ""
+
+#: blocks/maps/index.js:148
+msgid "Map Type Control is hidden."
+msgstr ""
+
+#: blocks/maps/index.js:159
+msgid "Show Zoom Control"
+msgstr ""
+
+#: blocks/maps/index.js:162
+msgid "Zoom Control is visible."
+msgstr ""
+
+#: blocks/maps/index.js:163
+msgid "Zoom Control is hidden."
+msgstr ""
+
+#: blocks/maps/index.js:171
+msgid "Map Type"
+msgstr ""
+
+#: blocks/maps/index.js:180
+#: blocks/maps/index.js:220
+msgid "Location Settings"
+msgstr ""
+
+#: blocks/maps/index.js:191
+msgid "Subtitle"
+msgstr ""
+
+#: blocks/maps/index.js:198
+msgid "Glyph Text"
+msgstr ""
+
+#: blocks/maps/index.js:205
+msgid "Color Settings"
+msgstr ""
+
+#: blocks/maps/index.js:212
+msgid "Glyph Color"
+msgstr ""
+
+#: blocks/maps/index.js:254
+msgid "Please enter an API key in the block settings"
+msgstr ""
+
+#: blocks/maps/Search.js:70
+msgid "Search"
+msgstr ""
+
+#: blocks/maps/Search.js:71
+msgid "Name or Adress of a Place..."
+msgstr ""

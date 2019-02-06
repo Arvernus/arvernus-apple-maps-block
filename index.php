@@ -4,7 +4,7 @@
  * Description: Creates a Gutenberg Block of the Apple MapKit JS library.
  * Author: Arvernus.info
  * Author URI: https://arvernus.info
- * Text Domain: apple_maps__gutenberg_block
+ * Text Domain: arvernus-apple-maps-block
  * Version: 1.0.1
  */
 
@@ -50,14 +50,29 @@ function _get_plugin_url() {
  *
  * @since 1.0.0
  */
-function apple_maps__gutenberg_block_load_textdomain() {
-	load_plugin_textdomain( 'apple_maps__gutenberg_block', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+function arvernus_apple_maps_block_load_textdomain() {
+	load_plugin_textdomain( 'arvernus-apple-maps-block', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
   }
   
-  add_action( 'init', __NAMESPACE__ . '\apple_maps__gutenberg_block_load_textdomain' );
+  add_action( 'init', __NAMESPACE__ . '\arvernus_apple_maps_block_load_textdomain' );
 
 // Enqueue JS and CSS
 include __DIR__ . '/lib/enqueue-scripts.php';
 
 include __DIR__ . '/lib/jwt-auth.php';
 include __DIR__ . '/lib/settings-endpoint.php';
+
+if ( function_exists( 'wp_set_script_translations' ) ) {
+	wp_set_script_translations( 'arvernus-apple-maps-blocks', 'arvernus-apple-maps-block', plugin_dir_path( __FILE__ ) . 'languages' );
+}
+
+if ( function_exists( 'wp_set_script_translations' ) ) {
+	wp_set_script_translations( 'arvernus-apple-maps-blocks', 'arvernus-apple-maps-block' );
+} elseif ( function_exists( 'wp_get_jed_locale_data' ) || function_exists( 'gutenberg_get_jed_locale_data' ) ) {
+	$locale_data = function_exists( 'wp_get_jed_locale_data' ) ? wp_get_jed_locale_data( 'arvernus-apple-maps-block' ) : gutenberg_get_jed_locale_data( 'arvernus-apple-maps-block' );
+	wp_add_inline_script(
+		'wp-i18n',
+		'wp.i18n.setLocaleData( ' . wp_json_encode( $locale_data ) . ', "arvernus-apple-maps-block" );',
+		'after'
+	);
+}

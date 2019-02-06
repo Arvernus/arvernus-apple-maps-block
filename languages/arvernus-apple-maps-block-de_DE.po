@@ -1,0 +1,118 @@
+# Copyright (C) 2019 Arvernus.info
+# This file is distributed under the same license as the Apple Maps Block plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Apple Maps Block 1.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/arvernus-apple-"
+"maps-block\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-02-06T08:20:57+00:00\n"
+"PO-Revision-Date: 2019-02-06 09:23+0100\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Domain: arvernus-apple-maps-block\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#. Plugin Name of the plugin
+msgid "Apple Maps Block"
+msgstr "Apple Maps Block"
+
+#. Description of the plugin
+msgid "Creates a Gutenberg Block of the Apple MapKit JS library."
+msgstr "Erstellt einen Gutenberg-Block der Apple MapKit JS Bibliothek."
+
+#. Author of the plugin
+msgid "Arvernus.info"
+msgstr "Arvernus.info"
+
+#. Author URI of the plugin
+msgid "https://arvernus.info"
+msgstr "https://arvernus.info"
+
+#: blocks/maps/ToggleSidebarButton.js:18
+msgid "Open Block Settings"
+msgstr "Blockeinstellungen öffnen"
+
+#: blocks/maps/index.js:88
+msgid "Satellite"
+msgstr "Satellit"
+
+#: blocks/maps/index.js:92
+msgid "Hybrid"
+msgstr "Hybrid"
+
+#: blocks/maps/index.js:96
+msgid "Standard"
+msgstr "Standard"
+
+#: blocks/maps/index.js:136
+msgid "Authentication"
+msgstr "Authentifizierung"
+
+#: blocks/maps/index.js:139
+msgid "Map Settings"
+msgstr "Karten-Einstellungen"
+
+#: blocks/maps/index.js:141
+msgid "Show Map Type Control"
+msgstr "Kartentyp Einstellung Anzeigen"
+
+#: blocks/maps/index.js:144
+msgid "Map Type Control is visible."
+msgstr "Die Kartentyp Auswahl ist sichtbar."
+
+#: blocks/maps/index.js:148
+msgid "Map Type Control is hidden."
+msgstr "Die Kartentyp Auswahl ist ausgeblendet."
+
+#: blocks/maps/index.js:159
+msgid "Show Zoom Control"
+msgstr "Zoom-Einstellung anzeigen"
+
+#: blocks/maps/index.js:162
+msgid "Zoom Control is visible."
+msgstr "Die Zoomsteuerung ist sichtbar."
+
+#: blocks/maps/index.js:163
+msgid "Zoom Control is hidden."
+msgstr "Zoom Control ist ausgeblendet."
+
+#: blocks/maps/index.js:171
+msgid "Map Type"
+msgstr "Kartentyp"
+
+#: blocks/maps/index.js:180 blocks/maps/index.js:220
+msgid "Location Settings"
+msgstr "Standort-Einstellungen"
+
+#: blocks/maps/index.js:191
+msgid "Subtitle"
+msgstr "Untertitel"
+
+#: blocks/maps/index.js:198
+msgid "Glyph Text"
+msgstr "Glyphe Text"
+
+#: blocks/maps/index.js:205
+msgid "Color Settings"
+msgstr "Farbeinstellungen"
+
+#: blocks/maps/index.js:212
+msgid "Glyph Color"
+msgstr "Glyphe Farbe"
+
+#: blocks/maps/index.js:254
+msgid "Please enter an API key in the block settings"
+msgstr "Bitte geben Sie eine API-Taste in den Blockeinstellungen ein"
+
+#: blocks/maps/Search.js:70
+msgid "Search"
+msgstr "Suche"
+
+#: blocks/maps/Search.js:71
+msgid "Name or Adress of a Place..."
+msgstr "Name oder Adresse eines Ortes ..."

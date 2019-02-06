@@ -85,15 +85,15 @@ const mapAttributes = {
 const mapTypeOptions = [
   {
     value: mapkit.Map.MapTypes.Satellite,
-    label: __("Satellite", "apple_maps__gutenberg_block")
+    label: __("Satellite", "arvernus-apple-maps-block")
   },
   {
     value: mapkit.Map.MapTypes.Hybrid,
-    label: __("Hybrid", "apple_maps__gutenberg_block")
+    label: __("Hybrid", "arvernus-apple-maps-block")
   },
   {
     value: mapkit.Map.MapTypes.Standard,
-    label: __("Standard", "apple_maps__gutenberg_block")
+    label: __("Standard", "arvernus-apple-maps-block")
   }
 ];
 
@@ -133,23 +133,21 @@ registerBlockType("mapkitjs/map", {
     return (
       <Fragment>
         <InspectorControls>
-          <PanelBody
-            title={__("Authentication", "apple_maps__gutenberg_block")}
-          >
+          <PanelBody title={__("Authentication", "arvernus-apple-maps-block")}>
             <Authenticate />
           </PanelBody>
-          <PanelBody title={__("Map Settings", "apple_maps__gutenberg_block")}>
+          <PanelBody title={__("Map Settings", "arvernus-apple-maps-block")}>
             <ToggleControl
-              label={__("Show Map Type Control", "apple_maps__gutenberg_block")}
+              label={__("Show Map Type Control", "arvernus-apple-maps-block")}
               help={
                 showsMapTypeControl
                   ? __(
                       "Map Type Control is visible.",
-                      "apple_maps__gutenberg_block"
+                      "arvernus-apple-maps-block"
                     )
                   : __(
                       "Map Type Control is hidden.",
-                      "apple_maps__gutenberg_block"
+                      "arvernus-apple-maps-block"
                     )
               }
               checked={showsMapTypeControl}
@@ -158,14 +156,11 @@ registerBlockType("mapkitjs/map", {
               }}
             />
             <ToggleControl
-              label={__("Show Zoom Control", "apple_maps__gutenberg_block")}
+              label={__("Show Zoom Control", "arvernus-apple-maps-block")}
               help={
                 showsZoomControl
-                  ? __(
-                      "Zoom Control is visible.",
-                      "apple_maps__gutenberg_block"
-                    )
-                  : __("Zoom Control is hidden.", "apple_maps__gutenberg_block")
+                  ? __("Zoom Control is visible.", "arvernus-apple-maps-block")
+                  : __("Zoom Control is hidden.", "arvernus-apple-maps-block")
               }
               checked={showsZoomControl}
               onChange={value => {
@@ -173,7 +168,7 @@ registerBlockType("mapkitjs/map", {
               }}
             />
             <SelectControl
-              label={__("Map Type", "apple_maps__gutenberg_block")}
+              label={__("Map Type", "arvernus-apple-maps-block")}
               value={mapType}
               onChange={value => {
                 setAttributes({ mapType: value });
@@ -182,7 +177,7 @@ registerBlockType("mapkitjs/map", {
             />
           </PanelBody>
           <PanelBody
-            title={__("Location Settings", "apple_maps__gutenberg_block")}
+            title={__("Location Settings", "arvernus-apple-maps-block")}
           >
             <Search {...props} />
             <TextControl
@@ -193,28 +188,28 @@ registerBlockType("mapkitjs/map", {
               }}
             />
             <TextControl
-              label={__("Subtitle", "apple_maps__gutenberg_block")}
+              label={__("Subtitle", "arvernus-apple-maps-block")}
               value={pointSubtitle}
               onChange={value => {
                 setAttributes({ pointSubtitle: value });
               }}
             />
             <TextControl
-              label={__("Glyph Text", "apple_maps__gutenberg_block")}
+              label={__("Glyph Text", "arvernus-apple-maps-block")}
               value={pointGlyphText}
               onChange={value => {
                 setAttributes({ pointGlyphText: value });
               }}
             />
             <PanelColorSettings
-              title={__("Color Settings", "apple_maps__gutenberg_block")}
+              title={__("Color Settings", "arvernus-apple-maps-block")}
               colorSettings={[
                 {
                   value: pointColor,
                   onChange: value => {
                     setAttributes({ pointColor: value });
                   },
-                  label: __("Glyph Color", "apple_maps__gutenberg_block")
+                  label: __("Glyph Color", "arvernus-apple-maps-block")
                 }
               ]}
             />
@@ -222,7 +217,7 @@ registerBlockType("mapkitjs/map", {
         </InspectorControls>
         <InspectorAdvancedControls>
           <PanelBody
-            title={__("Location Settings", "apple_maps__gutenberg_block")}
+            title={__("Location Settings", "arvernus-apple-maps-block")}
           >
             <TextControl
               label={__("Latitude")}
@@ -258,7 +253,7 @@ registerBlockType("mapkitjs/map", {
           <p>
             {__(
               "Please enter an API key in the block settings",
-              "apple_maps__gutenberg_block"
+              "arvernus-apple-maps-block"
             ) + " "}
             <ToggleSidebarButton />
           </p>

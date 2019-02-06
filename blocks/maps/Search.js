@@ -67,10 +67,10 @@ class Search extends wp.element.Component {
         }}
       >
         <TextControl
-          label={__("Search", "apple_maps__gutenberg_block")}
+          label={__("Search", "arvernus-apple-maps-block")}
           placeholder={__(
             "Name or Adress of a Place...",
-            "apple_maps__gutenberg_block"
+            "arvernus-apple-maps-block"
           )}
           value={this.state.query}
           onChange={newValue => {
