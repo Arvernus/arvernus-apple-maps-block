@@ -45,6 +45,10 @@ function _get_plugin_url() {
 	return $plugin_url;
 }
 
+add_action( 'plugins_loaded', function () {
+	load_plugin_textdomain( 'arvernus-apple-maps-block', plugin_basename( __DIR__ ) . '/languages' );
+} );
+
 // Enqueue JS and CSS
 include __DIR__ . '/lib/enqueue-scripts.php';
 
