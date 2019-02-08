@@ -1,6 +1,8 @@
 # Apple Maps - Gutenberg Block
+This Block allows you to use Apple Maps on your website. In the current version you are able to set a marker to a certain location, change the map-type and select wide or full alignment. 
 
 ![Apple Maps Gutenberg Block inside the Gutenberg Editor](screenshot.png)
+
 
 ## Available Settings
 
@@ -22,18 +24,17 @@
 #### Map Settings
 
 - **Show Map Type Control**: Toggle Switch to either hide or show the dropdown menu of map-types in the top right corner of the block.
-- **Show Zoom Control**:
-- **Map Type**:
+- **Map Type**: Dropdown menu to select the type of map. [Satellite / Hybrid / Standard]
 
 #### Location Settings
 
-- **Search**:
-- **Title**:
-- **Subtitle**:
-- **Glyph Text**:
-- **Glyph Color**:
+- **Search**: Search field to lookup places. This field will suggest results in a dropdown menu once you start typing.
+- **Title**: Text field to change the title displayed underneath the marker on the map.
+- **Subtitle**: Text field to change the subtitle displayed underneath the marker on the map.
+- **Glyph Text**: Text field to change the Text inside the Marker
+- **Glyph Color**: Color Picker to select the color of the Marker
 
 #### Advanced Settings
 
-- **Latitude**:
-- **Longitude**:
+- **Latitude**: Text field to set a custom latitude 
+- **Longitude**: Text field to set a custom longitude 
