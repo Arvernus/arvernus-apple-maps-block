@@ -130,6 +130,7 @@ registerBlockType("mapkitjs/map", {
     const toggleMapTypeControl = value => {
       setAttributes({ showsMapTypeControl: !showsMapTypeControl });
     };
+
     return (
       <Fragment>
         <InspectorControls>

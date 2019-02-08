@@ -6,8 +6,8 @@
 
 ### Toolbar
 
-- **Wide Alignement**: Toggle Button to enable the wide alignement of the block <sup>1</sup>
-- **Full Alignement**: Toggle Button to enable the full alignement of the block <sup>1</sup>
+- **Wide Alignment**: Toggle Button to enable the wide alignment of the block <sup>1</sup>
+- **Full Alignment**: Toggle Button to enable the full alignment of the block <sup>1</sup>
 
 > <sup>1</sup> (only one of these can be active at once)
 
@@ -21,8 +21,8 @@
 
 #### Map Settings
 
-- **Show Map Type Control**:
-- **Show Zoom Controll**:
+- **Show Map Type Control**: Toggle Switch to either hide or show the dropdown menu of map-types in the top right corner of the block.
+- **Show Zoom Control**:
 - **Map Type**:
 
 #### Location Settings

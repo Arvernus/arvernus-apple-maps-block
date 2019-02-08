@@ -37,9 +37,7 @@ function register_block_assets() {
 		filemtime( _get_plugin_directory() . $frontend_style_path )
 	);
 
-	wp_set_script_translations( 'arvernus-apple-maps-blocks', 'arvernus-apple-maps-block', plugin_dir_path( __FILE__ ) . 'languages' );
-
-	wp_set_script_translations( 'arvernus-apple-maps-editor-blocks', 'arvernus-apple-maps-block', plugin_dir_path( __FILE__ ) . 'languages' );
+	wp_set_script_translations( 'arvernus-apple-maps-blocks', 'arvernus-apple-maps-block');
 
 	register_block_type( 'mapkitjs/map', array(
 		'editor_script' => 'arvernus-apple-maps-blocks',
