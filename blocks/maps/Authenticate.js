@@ -54,7 +54,7 @@ class Authenticate extends wp.element.Component {
             this.setState({
                 privateKey: JSON.parse(response),
             });
-        }).catch(error => { console.log(error) });
+        }).catch(error => { console.warn(error) });
 
         wp.apiFetch({
             path: '/AppleMapKit/v1/team_id/get/'
@@ -62,7 +62,7 @@ class Authenticate extends wp.element.Component {
             this.setState({
                 teamId: JSON.parse(response),
             });
-        }).catch(error => { console.log(error) });
+        }).catch(error => { console.warn(error) });
 
         wp.apiFetch({
             path: '/AppleMapKit/v1/key_id/get/'
@@ -70,7 +70,7 @@ class Authenticate extends wp.element.Component {
             this.setState({
                 keyId: JSON.parse(response),
             });
-        }).catch(error => { console.log(error) });
+        }).catch(error => { console.warn(error) });
     }
 
 
@@ -97,7 +97,7 @@ class Authenticate extends wp.element.Component {
                 isSavingPrivateKey: false,
             });
         }).catch(error => {
-            console.log(error);
+            console.warn(error);
             this.setState({
                 savingHasFailed: true,
             })
@@ -112,7 +112,7 @@ class Authenticate extends wp.element.Component {
                 isSavingTeamId: false,
             });
         }).catch(error => {
-            console.log(error);
+            console.warn(error);
             this.setState({
                 savingHasFailed: true,
             })
@@ -127,7 +127,7 @@ class Authenticate extends wp.element.Component {
                 isSavingKeyId: false,
             });
         }).catch(error => {
-            console.log(error);
+            console.warn(error);
             this.setState({
                 savingHasFailed: true,
             })

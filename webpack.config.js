@@ -44,7 +44,7 @@ module.exports = {
     filename: '[name].js',
   },
   watch: 'production' !== process.env.NODE_ENV,
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {

@@ -1,29 +1,31 @@
 # Copyright (C) 2019 Arvernus.info
-# This file is distributed under the same license as the Apple Maps Block plugin.
+# This file is distributed under the same license as the Arvernus Apple Maps Block plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Apple Maps Block 1.0.1\n"
+"Project-Id-Version: Arvernus Apple Maps Block 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/arvernus-apple-"
 "maps-block\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-02-06T08:20:57+00:00\n"
-"PO-Revision-Date: 2019-02-06 09:23+0100\n"
-"X-Generator: Poedit 2.2.1\n"
-"X-Domain: arvernus-apple-maps-block\n"
+"POT-Creation-Date: 2019-02-10T14:53:46+00:00\n"
+"PO-Revision-Date: 2019-02-10 15:55+0100\n"
+"X-Generator: Poedit 2.0.5\n"
+"X-Domain: arvernus\n"
 "Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: de\n"
+"Language: de_DE\n"
 
 #. Plugin Name of the plugin
-msgid "Apple Maps Block"
-msgstr "Apple Maps Block"
+msgid "Arvernus Apple Maps Block"
+msgstr "Arvernus Apple Maps Block"
 
 #. Description of the plugin
 msgid "Creates a Gutenberg Block of the Apple MapKit JS library."
-msgstr "Erstellt einen Gutenberg-Block der Apple MapKit JS Bibliothek."
+msgstr ""
+"Erstellt einen Gutenberg-Block basierend auf der Apple MapKit JS-"
+"Bibliothek."
 
 #. Author of the plugin
 msgid "Arvernus.info"
@@ -32,10 +34,6 @@ msgstr "Arvernus.info"
 #. Author URI of the plugin
 msgid "https://arvernus.info"
 msgstr "https://arvernus.info"
-
-#: blocks/maps/ToggleSidebarButton.js:18
-msgid "Open Block Settings"
-msgstr "Blockeinstellungen öffnen"
 
 #: blocks/maps/index.js:88
 msgid "Satellite"
@@ -49,70 +47,62 @@ msgstr "Hybrid"
 msgid "Standard"
 msgstr "Standard"
 
-#: blocks/maps/index.js:136
+#: blocks/maps/index.js:137
 msgid "Authentication"
 msgstr "Authentifizierung"
 
-#: blocks/maps/index.js:139
+#: blocks/maps/index.js:140
 msgid "Map Settings"
 msgstr "Karten-Einstellungen"
 
-#: blocks/maps/index.js:141
+#: blocks/maps/index.js:142
 msgid "Show Map Type Control"
 msgstr "Kartentyp Einstellung Anzeigen"
 
-#: blocks/maps/index.js:144
+#: blocks/maps/index.js:145
 msgid "Map Type Control is visible."
 msgstr "Die Kartentyp Auswahl ist sichtbar."
 
-#: blocks/maps/index.js:148
+#: blocks/maps/index.js:149
 msgid "Map Type Control is hidden."
 msgstr "Die Kartentyp Auswahl ist ausgeblendet."
 
-#: blocks/maps/index.js:159
+#: blocks/maps/index.js:160
 msgid "Show Zoom Control"
 msgstr "Zoom-Einstellung anzeigen"
 
-#: blocks/maps/index.js:162
-msgid "Zoom Control is visible."
-msgstr "Die Zoomsteuerung ist sichtbar."
-
 #: blocks/maps/index.js:163
+msgid "Zoom Control is visible."
+msgstr "Zoomsteuerung ist sichtbar."
+
+#: blocks/maps/index.js:164
 msgid "Zoom Control is hidden."
 msgstr "Zoom Control ist ausgeblendet."
 
-#: blocks/maps/index.js:171
+#: blocks/maps/index.js:172
 msgid "Map Type"
-msgstr "Kartentyp"
+msgstr "Karten Typ"
 
-#: blocks/maps/index.js:180 blocks/maps/index.js:220
+#: blocks/maps/index.js:181 blocks/maps/index.js:221
 msgid "Location Settings"
-msgstr "Standort-Einstellungen"
+msgstr "Adress-Einstellungen"
 
-#: blocks/maps/index.js:191
+#: blocks/maps/index.js:192
 msgid "Subtitle"
 msgstr "Untertitel"
 
-#: blocks/maps/index.js:198
+#: blocks/maps/index.js:199
 msgid "Glyph Text"
-msgstr "Glyphe Text"
+msgstr "Glyphentext"
 
-#: blocks/maps/index.js:205
+#: blocks/maps/index.js:206
 msgid "Color Settings"
 msgstr "Farbeinstellungen"
 
-#: blocks/maps/index.js:212
+#: blocks/maps/index.js:213
 msgid "Glyph Color"
-msgstr "Glyphe Farbe"
+msgstr "Glyphenfarbe"
 
-#: blocks/maps/index.js:254
+#: blocks/maps/index.js:255
 msgid "Please enter an API key in the block settings"
 msgstr "Bitte geben Sie eine API-Taste in den Blockeinstellungen ein"
-
-#: blocks/maps/Search.js:70
-msgid "Search"
-msgstr "Suche"
-
-#: blocks/maps/Search.js:71
-msgid "Name or Adress of a Place..."
-msgstr "Name oder Adresse eines Ortes ..."

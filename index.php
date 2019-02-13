@@ -1,10 +1,11 @@
 <?php
 /**
- * Plugin Name: Apple Maps Block
+ * Plugin Name: Arvernus Apple Maps Block
  * Description: Creates a Gutenberg Block of the Apple MapKit JS library.
  * Author: Arvernus.info
  * Author URI: https://arvernus.info
- * Text Domain: arvernus-apple-maps-block
+ * Text Domain: arvernus
+ * Domain Path: /languages
  * Version: 1.0.1
  */
 
@@ -45,9 +46,11 @@ function _get_plugin_url() {
 	return $plugin_url;
 }
 
-add_action( 'plugins_loaded', function () {
-	load_plugin_textdomain( 'arvernus-apple-maps-block', plugin_basename( __DIR__ ) . '/languages' );
-} );
+add_action( 'plugins_loaded', __NAMESPACE__.'\_arvernus_load_textdomain' );
+
+function _arvernus_load_textdomain() {
+	load_plugin_textdomain('arvernus', false, basename( dirname( __FILE__ ) ) . '/languages/');
+}
 
 // Enqueue JS and CSS
 include __DIR__ . '/lib/enqueue-scripts.php';

@@ -1,0 +1,40 @@
+{
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"plural_forms": "nplurals=2; plural=(n != 1);",
+				"lang": "de_DE"
+			},
+			"Arvernus Apple Maps Block": ["Arvernus Apple Maps Block"],
+			"Creates a Gutenberg Block of the Apple MapKit JS library.": [
+				"Erstellt einen Gutenberg-Block basierend auf der Apple MapKit JS-Bibliothek."
+			],
+			"Arvernus.info": ["Arvernus.info"],
+			"https://arvernus.info": ["https://arvernus.info"],
+			"Satellite": ["Satellit"],
+			"Hybrid": ["Hybrid"],
+			"Standard": ["Standard"],
+			"Authentication": ["Authentifizierung"],
+			"Map Settings": ["Karten-Einstellungen"],
+			"Show Map Type Control": ["Kartentyp Einstellung Anzeigen"],
+			"Map Type Control is visible.": ["Die Kartentyp Auswahl ist sichtbar."],
+			"Map Type Control is hidden.": [
+				"Die Kartentyp Auswahl ist ausgeblendet."
+			],
+			"Show Zoom Control": ["Zoom-Einstellung anzeigen"],
+			"Zoom Control is visible.": ["Zoomsteuerung ist sichtbar."],
+			"Zoom Control is hidden.": ["Zoom Control ist ausgeblendet."],
+			"Map Type": ["Karten Typ"],
+			"Location Settings": ["Adress-Einstellungen"],
+			"Subtitle": ["Untertitel"],
+			"Glyph Text": ["Glyphentext"],
+			"Color Settings": ["Farbeinstellungen"],
+			"Glyph Color": ["Glyphenfarbe"],
+			"Please enter an API key in the block settings": [
+				"Bitte geben Sie eine API-Taste in den Blockeinstellungen ein"
+			]
+		}
+	}
+}
