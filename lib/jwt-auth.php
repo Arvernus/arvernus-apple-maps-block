@@ -35,15 +35,15 @@ function MapKitGetJWT( $data ) {
 		'iat' => time(),
 		'exp' => time() + 30
 	];
-	$Payload = MapKitEncode(json_encode($Header)) . '.' . MapKitEncode(json_encode($Body));
+	$Payload = json_encode($Header) . '.' . json_encode($Body);
 	if(!$Key = openssl_pkey_get_private($private_key)) {
 		return new WP_Error( 'NoKey', 'Missing or Invalid Private Key' );
 	}
 	if(!openssl_sign($Payload, $Res, $Key, OPENSSL_ALGO_SHA256)) {
 		return new WP_Error( 'SignError', 'Signing Failed' );
 	}
-	$Res = $Payload . '.' . MapKitEncode($Res);
-	return new WP_REST_Response ( $Res, 200 );
+	$Res = MapKitEncode($Payload);
+	return $Res;
 }
 
 ?>
