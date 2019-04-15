@@ -6,7 +6,7 @@
  * Author URI: https://arvernus.info
  * Text Domain: arvernus-apple-maps-block
  * Domain Path: /languages
- * Version: 1.0.3
+ * Version: 1.0.4
  */
 
 namespace Arvernus\Apple_Maps_Block;
