@@ -60,7 +60,7 @@ function _get_plugin_url() {
 	return $plugin_url;
 }
 
-define ( 'PLUGIN_ROOT', _get_plugin_directory(__FILE__) );
+define ( 'PLUGIN_ROOT', _get_plugin_url(__FILE__) );
 
 // Enqueue JS and CSS
 include __DIR__ . '/lib/enqueue-scripts.php';

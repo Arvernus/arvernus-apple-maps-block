@@ -6,11 +6,13 @@ add_action('init', __NAMESPACE__.'\register_block_assets');
 
 function register_block_assets() {
 
+	wp_enqueue_script('apple-mapkit-js', "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js", [], 5, false);
+
 	$block_path = '/assets/js/editor.blocks.js';
 	wp_register_script(
 		'arvernus-apple-maps-block',
 		PLUGIN_ROOT . $block_path,
-		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor' ],
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor', 'apple-mapkit-js' ],
 		APPLE_MAPS_BLOCK_CURRENT_VERSION
 	);
 
@@ -41,9 +43,8 @@ function register_block_assets() {
 }
 
 
-/**
- * Enqueue frontend JavaScript and CSS assets.
- */
+add_action('init', __NAMESPACE__.'\enqueue_frontend_assets');
+
 function enqueue_frontend_assets() {
 
 	// If in the backend, bail out.
@@ -55,7 +56,7 @@ function enqueue_frontend_assets() {
 	wp_enqueue_script(
 		'arvernus-apple-maps-blocks-frontend',
 		PLUGIN_ROOT . $block_path,
-		[ 'wp-dom-ready' ],
+		[ 'wp-dom-ready', 'apple-mapkit-js' ],
 		APPLE_MAPS_BLOCK_CURRENT_VERSION
 	);
 }

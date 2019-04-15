@@ -1,6 +1,4 @@
 import Suggestions from './Suggestions';
-import 'apple-mapkit-js';
-import 'apple-mapkit-js/contains';
 
 const { __, sprintf } = wp.i18n;
 const { TextControl, Popover } = wp.components;

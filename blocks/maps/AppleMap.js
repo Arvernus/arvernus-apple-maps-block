@@ -1,6 +1,3 @@
-import 'apple-mapkit-js';
-import 'apple-mapkit-js/contains';
-
 const { __, sprintf } = wp.i18n;
 const { Fragment } = wp.components;
 

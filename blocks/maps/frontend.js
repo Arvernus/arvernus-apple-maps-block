@@ -1,9 +1,4 @@
-"use strict";
-
-import 'apple-mapkit-js';
-import 'apple-mapkit-js/contains';
-
-mapkit.draw = function( map, element ) {
+window.mapkit.draw = function(map, element) {
 	map.innerHTML = '';
 	const mapType = element.dataset.mapType;
 	const showsMapTypeControl = element.dataset.showsMapTypeControl;
@@ -17,55 +12,51 @@ mapkit.draw = function( map, element ) {
 
 	map.mapType = mapType;
 	map.showsMapTypeControl = showsMapTypeControl;
-	map.showsCompass = mapkit.FeatureVisibility.Adaptive;
+	map.showsCompass = window.mapkit.FeatureVisibility.Adaptive;
 	map.showsZoomControl = showsZoomControl;
 
 	if (pointLongitude && pointLatitude) {
-		const work = new mapkit.Coordinate(pointLatitude, pointLongitude);
-		const workAnnotation = new mapkit.MarkerAnnotation(work);
+		const work = new window.mapkit.Coordinate(pointLatitude, pointLongitude);
+		const workAnnotation = new window.mapkit.MarkerAnnotation(work);
 
-		workAnnotation.color = pointColor; 
+		workAnnotation.color = pointColor;
 		workAnnotation.title = pointTitle;
 		workAnnotation.subtitle = pointSubtitle;
-		workAnnotation.selected = "true";
-		workAnnotation.glyphText = pointGlyphText;    
-		map.showItems(
-			[workAnnotation],
-			{ 
-				animate: true,
-				padding: new mapkit.Padding(800, 200, 800, 200)
-			}
-		);
+		workAnnotation.selected = 'true';
+		workAnnotation.glyphText = pointGlyphText;
+		map.showItems([workAnnotation], {
+			animate: true,
+			padding: new window.mapkit.Padding(800, 200, 800, 200),
+		});
 	}
-}
+};
 
-wp.domReady( function() {
-	mapkit.init({
+wp.domReady(function() {
+	window.mapkit.init({
 		authorizationCallback: function(done) {
 			const url = `${window.location.origin}/wp-json/AppleMapKit/v1/GetJWT/`;
-			fetch( url, {
-				method: "GET",
+			fetch(url, {
+				method: 'GET',
 				headers: {
 					Accept: 'Application/JSON',
 				},
-			},)
-			.then(function(response) {
-				if (response.status >= 200 && response.status < 400 ) {
-					return response.json();
-				}
-				else {
-					throw `Response resulted in error ${response.status}`;
-				}
 			})
-			.then(function(result) {
-				done(result)
-			});
-		}
+				.then(function(response) {
+					if (response.status >= 200 && response.status < 400) {
+						return response.json();
+					} else {
+						throw `Response resulted in error ${response.status}`;
+					}
+				})
+				.then(function(result) {
+					done(result);
+				});
+		},
 	});
 	const mapElements = document.querySelectorAll('.wp-block-mapkitjs-map');
-	// debugger;
-	mapElements.forEach( element => {
-		const map = new mapkit.Map( element );
-		mapkit.draw( map, element );
-	})
-} )
+
+	mapElements.forEach(element => {
+		const map = new window.mapkit.Map(element);
+		window.mapkit.draw(map, element);
+	});
+});
