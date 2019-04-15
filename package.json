@@ -2,13 +2,7 @@
 	"name": "arvernus-apple-maps-block",
 	"version": "1.0.0",
 	"description": "",
-	"main": "blocks/index.js",
-	"scripts": {
-		"start": "cross-env webpack --watch --mode=development",
-		"test": "jest --watchAll",
-		"build": "cross-env NODE_ENV=production webpack -p",
-		"bundle": "gulp"
-	},
+	"main": "src/index.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://fabiankaegy@github.com/Arvernus/arvernus-apple-maps-block.git"
@@ -21,56 +15,27 @@
 	},
 	"homepage": "https://github.com/Arvernus/arvernus-apple-maps-block#readme",
 	"devDependencies": {
-		"@babel/core": "^7.2.2",
-		"@babel/plugin-transform-runtime": "^7.2.0",
-		"@babel/preset-env": "^7.3.1",
-		"@wordpress/babel-preset-default": "^3.0.2",
 		"@wordpress/eslint-plugin": "^2.1.0",
-		"@wordpress/jest-console": "^2.0.7",
-		"@wordpress/jest-preset-default": "^3.0.3",
-		"autoprefixer": "^9.4.7",
-		"babel-eslint": "^10.0.1",
-		"babel-jest": "^24.1.0",
-		"babel-loader": "^8.0.5",
-		"babel-plugin-add-module-exports": "^1.0.0",
-		"babel-plugin-transform-react-jsx": "^6.24.1",
-		"babel-polyfill": "^6.26.0",
-		"babel-preset-env": "^1.7.0",
-		"classnames": "^2.2.6",
-		"copy-webpack-plugin": "^5.0.0",
-		"cross-env": "^5.2.0",
-		"css-loader": "^2.1.0",
-		"eslint": "^5.13.0",
-		"extract-text-webpack-plugin": "^4.0.0-beta.0",
-		"jest": "^24.1.0",
+		"@wordpress/scripts": "^3.1.0",
+		"css-loader": "^2.1.1",
+		"extract-loader": "^3.1.0",
+		"file-loader": "^3.0.1",
 		"node-sass": "^4.11.0",
+		"path": "^0.12.7",
 		"postcss-loader": "^3.0.0",
-		"raw-loader": "^1.0.0",
-		"react-test-renderer": "^16.8.2",
+		"postcss-preset-env": "^6.6.0",
 		"sass-loader": "^7.1.0",
-		"style-loader": "^0.23.1",
-		"webpack": "^4.29.3",
-		"webpack-cli": "^3.2.3",
-		"webpack-zip-plugin": "^0.1.6"
+		"webpack": "^4.30.0"
 	},
-	"babel": {
-		"presets": [
-			"@wordpress/babel-preset-default"
-		],
-		"plugins": [
-			[
-				"transform-react-jsx",
-				{
-					"pragma": "wp.element.createElement"
-				}
-			]
-		]
-	},
-	"jest": {
-		"preset": "@wordpress/jest-preset-default"
-	},
-	"dependencies": {
-		"@wordpress/element": "^2.1.9",
-		"apple-mapkit-js": "^6.0.1"
+	"scripts": {
+		"build": "wp-scripts run build",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses --production",
+		"lint:css": "wp-scripts lint-style '**/*.css'",
+		"lint:js": "wp-scripts lint-js ./src/",
+		"lint:pkg-json": "wp-scripts lint-pkg-json .",
+		"start": "wp-scripts start",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js"
 	}
 }

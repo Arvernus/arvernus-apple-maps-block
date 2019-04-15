@@ -1,99 +1,59 @@
-var packageJson = require('./package.json');
-var ExtractText = require('extract-text-webpack-plugin');
-var debug = process.env.NODE_ENV !== 'production';
-var webpack = require('webpack');
-var ZipFilesPlugin = require('webpack-zip-plugin');
-var CopyPlugin = require('copy-webpack-plugin');
-
-var extractEditorSCSS = new ExtractText({
-	filename: './assets/css/blocks.editor.css',
-});
-
-var extractBlockSCSS = new ExtractText({
-	filename: './assets/css/blocks.style.css',
-});
-
-var copyToDist = new CopyPlugin([
-	{
-		from: '.',
-		to: `./${packageJson.name}`,
-		ignore: [
-			'node_modules/**/*',
-			'dist/**/*',
-			'.gitignore',
-			'webpack.config.js',
-			'.prettierrc',
-			'gulp.config.js',
-			'gulpfile.js',
-			'package.json',
-			'package-lock.json',
-			'**.DS_Store*',
-			'composer.lock',
-			'.vscode/**/*',
-			'.git/**/*',
-			`${packageJson.name}.zip*`,
-			`${packageJson.name}/**/*`,
-		],
-	},
-]);
-
-var zipDist = new ZipFilesPlugin({
-	initialFile: `./${packageJson.name}`,
-	endPath: `./`,
-	zipName: `${packageJson.name}.zip`,
-});
-
-var devPlugins = [extractEditorSCSS, extractBlockSCSS];
-var prodPlugins = [...devPlugins, copyToDist, zipDist];
-
-var scssConfig = {
-	use: [
-		{
-			loader: 'css-loader',
-		},
-		{
-			loader: 'sass-loader',
-			options: {
-				outputStyle: 'compressed',
-			},
-		},
-	],
-};
+const webpack = require( 'webpack' );
+const defaultConfig = require( './node_modules/@wordpress/scripts/config/webpack.config' );
+const postcssPresetEnv = require( 'postcss-preset-env' );
+const path = require( 'path' );
 
 module.exports = {
-	context: __dirname,
-	devtool: debug ? 'eval-source-map' : '',
-	mode: debug ? 'development' : 'production',
+	...defaultConfig,
 	entry: {
-		'./assets/js/editor.blocks': './blocks/index.js',
-		'./assets/js/frontend.blocks': './blocks/frontend.js',
-	},
-	output: {
-		path: __dirname,
-		filename: '[name].js',
+		...defaultConfig.entry,
+		frontend: path.resolve( process.cwd(), 'src', 'frontend.js' ),
 	},
 	module: {
+		...defaultConfig.module,
 		rules: [
+			...defaultConfig.module.rules,
 			{
-				test: /\.js$/,
-				exclude: /node_modules/,
+				test: /\.(sc|sa|c)ss$/,
 				use: [
 					{
-						loader: 'babel-loader',
+						loader: 'file-loader',
+						options: {
+							name: '[name].css',
+						},
+					},
+					{
+						loader: 'extract-loader',
+					},
+					{
+						loader: 'css-loader',
+					},
+					{
+						loader: 'sass-loader',
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: () => [
+								postcssPresetEnv( {
+									stage: 3,
+									features: {
+										'custom-media-queries': {
+											preserve: false,
+										},
+										'custom-properties': {
+											preserve: true,
+										},
+										'nesting-rules': true,
+									},
+								} ),
+							],
+						},
 					},
 				],
 			},
-			{
-				test: /editor\.scss$/,
-				exclude: /node_modules/,
-				use: extractEditorSCSS.extract(scssConfig),
-			},
-			{
-				test: /style\.scss$/,
-				exclude: /node_modules/,
-				use: extractBlockSCSS.extract(scssConfig),
-			},
 		],
 	},
-	plugins: debug ? devPlugins : prodPlugins,
+	plugins: [ ...defaultConfig.plugins ],
 };

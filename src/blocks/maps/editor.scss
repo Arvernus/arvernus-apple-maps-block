@@ -10,16 +10,15 @@
 			}
 			&:hover {
 				cursor: pointer;
-				background-color: darken( #ffffff, 2 );
+				background-color: darken(#ffffff, 2);
 			}
 		}
 	}
 }
 
-[data-type="mapkitjs/map"] {
+[data-type='mapkitjs/map'] {
 	.overlay {
 		width: 100%;
 		height: 100%;
 	}
 }
-
