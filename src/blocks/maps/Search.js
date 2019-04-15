@@ -6,10 +6,11 @@ import Suggestions from './Suggestions';
 /**
  * WordPress dependencies
  */
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { TextControl, Popover } from '@wordpress/components';
+import { Component } from '@wordpress/element';
 
-class Search extends wp.element.Component {
+class Search extends Component {
 	constructor( props ) {
 		super( props );
 		this.handleInputChange = this.handleInputChange.bind( this );
@@ -21,7 +22,7 @@ class Search extends wp.element.Component {
 	}
 
 	getInfo() {
-		const search = new mapkit.Search();
+		const search = new window.mapkit.Search();
 		if ( this.state.query ) {
 			search.search( this.state.query, ( error, data ) => {
 				if ( error ) {

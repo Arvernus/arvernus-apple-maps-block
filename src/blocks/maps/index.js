@@ -1,31 +1,19 @@
 /**
- * External dependencies
+ * WordPress dependencies
  */
+import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
+import { registerBlockType } from '@wordpress/blocks';
+
 /**
  * Internal dependencies
  */
 import AppleMap from './AppleMap';
 import CheckApi from './CheckApi';
-import Search from './Search';
-import Authenticate from './Authenticate';
 import ToggleSidebarButton from './ToggleSidebarButton';
+import AdvancedBlockSidebar from './AdvancedBlockSidebar';
+import BlockSidebar from './BlockSidebar';
 
-/**
- * WordPress dependencies
- */
-import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
-import { PanelBody, TextControl, ToggleControl, SelectControl } from '@wordpress/components';
-import { registerBlockType } from '@wordpress/blocks';
-import {
-	InspectorControls,
-	InspectorAdvancedControls,
-	PanelColorSettings,
-} from '@wordpress/editor';
-
-/**
- * Internal dependencies
- */
 import './style.scss';
 import './editor.scss';
 
@@ -75,13 +63,6 @@ const mapAttributes = {
 	},
 };
 
-const mapTypeOptions = Object.keys( window.mapkit.Map.MapTypes ).map( ( key, index ) => {
-	return {
-		label: key,
-		value: window.mapkit.Map.MapTypes[ key ],
-	};
-} );
-
 registerBlockType( 'mapkitjs/map', {
 	title: 'Mapkit',
 	icon: {
@@ -95,124 +76,31 @@ registerBlockType( 'mapkitjs/map', {
 	},
 	edit: ( props ) => {
 		const {
+			attributes,
 			attributes: {
 				authenticated,
 				showsMapTypeControl,
-				showsZoomControl,
 				pointLatitude,
 				pointLongitude,
-				pointLocationName,
 				pointTitle,
 				pointSubtitle,
 				pointGlyphText,
 				pointColor,
 				mapType,
-				searchQuery,
 			},
 			className,
 			setAttributes,
 		} = props;
-		const toggleMapTypeControl = ( value ) => {
-			setAttributes( { showsMapTypeControl: ! showsMapTypeControl } );
-		};
+
 		return (
 			<Fragment>
-				<InspectorControls>
-					<PanelBody title={ __( 'Authentication' ) }>
-						<Authenticate />
-					</PanelBody>
-					<PanelBody title={ __( 'Map Settings' ) }>
-						<ToggleControl
-							label={ __( 'Show Map Type Control' ) }
-							help={
-								showsMapTypeControl ?
-									__( 'Map Type Control is visible.' ) :
-									__( 'Map Type Control is hidden.' )
-							}
-							checked={ showsMapTypeControl }
-							onChange={ ( value ) => {
-								setAttributes( { showsMapTypeControl: ! showsMapTypeControl } );
-							} }
-						/>
-						<ToggleControl
-							label={ __( 'Show Zoom Control' ) }
-							help={
-								showsZoomControl ? __( 'Zoom Control is visible.' ) : __( 'Zoom Control is hidden.' )
-							}
-							checked={ showsZoomControl }
-							onChange={ ( value ) => {
-								setAttributes( { showsZoomControl: ! showsZoomControl } );
-							} }
-						/>
-						<SelectControl
-							label={ __( 'Map Type' ) }
-							value={ mapType }
-							onChange={ ( value ) => {
-								setAttributes( { mapType: value } );
-							} }
-							options={ mapTypeOptions }
-						/>
-					</PanelBody>
-					<PanelBody title={ __( 'Location Settings' ) }>
-						<Search { ...props } />
-						<TextControl
-							label={ __( 'Titel' ) }
-							value={ pointTitle }
-							onChange={ ( value ) => {
-								setAttributes( { pointTitle: value } );
-							} }
-						/>
-						<TextControl
-							label={ __( 'Subtitle' ) }
-							value={ pointSubtitle }
-							onChange={ ( value ) => {
-								setAttributes( { pointSubtitle: value } );
-							} }
-						/>
-						<TextControl
-							label={ __( 'Glyph Text' ) }
-							value={ pointGlyphText }
-							onChange={ ( value ) => {
-								setAttributes( { pointGlyphText: value } );
-							} }
-						/>
-						<PanelColorSettings
-							title={ __( 'Color Settings' ) }
-							colorSettings={ [
-								{
-									value: pointColor,
-									onChange: ( value ) => {
-										setAttributes( { pointColor: value } );
-									},
-									label: __( 'Glyph Color' ),
-								},
-							] }
-						/>
-					</PanelBody>
-				</InspectorControls>
-				<InspectorAdvancedControls>
-					<PanelBody title={ __( 'Location Settings', 'arvernus-apple-maps-block' ) }>
-						<TextControl
-							label={ __( 'Latitude', 'arvernus-apple-maps-block' ) }
-							value={ pointLatitude }
-							onChange={ ( value ) => {
-								setAttributes( { pointLatitude: value } );
-							} }
-						/>
-						<TextControl
-							label={ __( 'Longitude', 'arvernus-apple-maps-block' ) }
-							value={ pointLongitude }
-							onChange={ ( value ) => {
-								setAttributes( { pointLongitude: value } );
-							} }
-						/>
-					</PanelBody>
-				</InspectorAdvancedControls>
+				<BlockSidebar attributes={ attributes } setAttriibutes={ setAttributes } />
+				<AdvancedBlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
 				<CheckApi { ...props } />
 				{ authenticated ? (
 					<AppleMap
 						{ ...props }
-						className={ props.className }
+						className={ className }
 						showsMapTypeControl={ showsMapTypeControl }
 						mapType={ mapType }
 						pointTitle={ pointTitle }
@@ -236,8 +124,6 @@ registerBlockType( 'mapkitjs/map', {
 		const {
 			attributes: {
 				showsMapTypeControl,
-				showsCompass,
-				showsZoomControl,
 				pointLatitude,
 				pointLongitude,
 				pointTitle,
@@ -245,13 +131,12 @@ registerBlockType( 'mapkitjs/map', {
 				pointGlyphText,
 				pointColor,
 				mapType,
-				searchQuery,
 			},
 			className,
 		} = props;
 		return (
 			<AppleMap
-				className={ props.className }
+				className={ className }
 				showsMapTypeControl={ showsMapTypeControl }
 				mapType={ mapType }
 				pointTitle={ pointTitle }
