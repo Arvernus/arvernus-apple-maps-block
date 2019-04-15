@@ -94,7 +94,7 @@ registerBlockType( 'mapkitjs/map', {
 
 		return (
 			<Fragment>
-				<BlockSidebar attributes={ attributes } setAttriibutes={ setAttributes } />
+				<BlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
 				<AdvancedBlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
 				<CheckApi { ...props } />
 				{ authenticated ? (
