@@ -12,7 +12,7 @@ function register_block_assets() {
 	wp_register_script(
 		'arvernus-apple-maps-block',
 		PLUGIN_ROOT . $block_path,
-		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor', 'apple-mapkit-js' ],
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor', 'wp-nux', 'wp-data', 'apple-mapkit-js' ],
 		APPLE_MAPS_BLOCK_CURRENT_VERSION
 	);
 

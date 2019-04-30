@@ -10,6 +10,8 @@ import Authenticate from './Authenticate';
 import { __ } from '@wordpress/i18n';
 import { PanelBody, TextControl, ToggleControl, SelectControl } from '@wordpress/components';
 import { InspectorControls, PanelColorSettings } from '@wordpress/editor';
+import { DotTip } from '@wordpress/nux';
+import { select, dispatch } from '@wordpress/data';
 
 const mapTypeOptions = Object.keys( window.mapkit.Map.MapTypes ).map( ( key ) => {
 	return {
@@ -28,6 +30,11 @@ const BlockSidebar = ( { attributes, setAttributes } ) => {
 		mapType,
 		showsZoomControl,
 	} = attributes;
+
+	const areTipsEnabled = select( 'core/nux' ).areTipsEnabled();
+	if ( ! areTipsEnabled ) {
+		dispatch( 'core/nux' ).enableTips();
+	}
 
 	return (
 		<InspectorControls>

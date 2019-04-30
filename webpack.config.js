@@ -55,5 +55,4 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [ ...defaultConfig.plugins ],
 };

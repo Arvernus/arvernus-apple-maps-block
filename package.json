@@ -15,6 +15,8 @@
 	},
 	"homepage": "https://github.com/Arvernus/arvernus-apple-maps-block#readme",
 	"devDependencies": {
+		"@wordpress/babel-preset-default": "^4.1.0",
+		"@wordpress/e2e-test-utils": "^1.1.0",
 		"@wordpress/eslint-plugin": "^2.1.0",
 		"@wordpress/scripts": "^3.1.0",
 		"css-loader": "^2.1.1",

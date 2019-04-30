@@ -4,6 +4,8 @@
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
 import { registerBlockType } from '@wordpress/blocks';
+import { DotTip } from '@wordpress/nux';
+import { Icon } from '@wordpress/components';
 
 /**
  * Internal dependencies
@@ -98,18 +100,32 @@ registerBlockType( 'mapkitjs/map', {
 				<AdvancedBlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
 				<CheckApi { ...props } />
 				{ authenticated ? (
-					<AppleMap
-						{ ...props }
-						className={ className }
-						showsMapTypeControl={ showsMapTypeControl }
-						mapType={ mapType }
-						pointTitle={ pointTitle }
-						pointSubtitle={ pointSubtitle }
-						pointGlyphText={ pointGlyphText }
-						pointLatitude={ pointLatitude }
-						pointLongitude={ pointLongitude }
-						pointColor={ pointColor }
-					/>
+					<div className="wrapper">
+						<div className="overlay">
+							<span className="notice">
+								<Icon icon="warning" />
+								{ __( 'Preview', 'arvernus-apple-maps-block' ) }
+							</span>
+						</div>
+						<DotTip tipId="arvernus/shows-map-type-controll">
+							{ __(
+								'This area is only a Preview. All the settings happen over in the Sidebar.',
+								'arvernus-apple-maps-block'
+							) }
+						</DotTip>
+						<AppleMap
+							{ ...props }
+							className={ className }
+							showsMapTypeControl={ showsMapTypeControl }
+							mapType={ mapType }
+							pointTitle={ pointTitle }
+							pointSubtitle={ pointSubtitle }
+							pointGlyphText={ pointGlyphText }
+							pointLatitude={ pointLatitude }
+							pointLongitude={ pointLongitude }
+							pointColor={ pointColor }
+						/>
+					</div>
 				) : (
 					<p>
 						{ __( 'Please enter an API key in the block settings', 'arvernus-apple-maps-block' ) + ' ' }
