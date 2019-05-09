@@ -31,11 +31,6 @@ const BlockSidebar = ( { attributes, setAttributes } ) => {
 		showsZoomControl,
 	} = attributes;
 
-	const areTipsEnabled = select( 'core/nux' ).areTipsEnabled();
-	if ( ! areTipsEnabled ) {
-		dispatch( 'core/nux' ).enableTips();
-	}
-
 	return (
 		<InspectorControls>
 			<PanelBody title={ __( 'Authentication' ) }>
