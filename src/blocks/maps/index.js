@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
+import { Fragment, useEffect, useRef } from '@wordpress/element';
 import { registerBlockType } from '@wordpress/blocks';
 import { DotTip } from '@wordpress/nux';
 import { Icon } from '@wordpress/components';
@@ -94,6 +94,26 @@ registerBlockType( 'mapkitjs/map', {
 			setAttributes,
 		} = props;
 
+		const noticeRef = useRef( null );
+		const overlayRef = useRef( null );
+
+		function toggleShakeClass() {
+			noticeRef.current.classList.toggle( 'shake-top' );
+
+			if ( noticeRef.current.classList.contains( 'shake-top' ) ) {
+				window.requestAnimationFrame( () => {
+					setTimeout( toggleShakeClass, 800 );
+				} );
+			}
+		}
+
+		useEffect( () => {
+			overlayRef.current.addEventListener( 'click', toggleShakeClass );
+			return () => {
+				overlayRef.current.removeEventListener( 'click', toggleShakeClass );
+			};
+		} );
+
 		return (
 			<Fragment>
 				<BlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
@@ -101,8 +121,8 @@ registerBlockType( 'mapkitjs/map', {
 				<CheckApi { ...props } />
 				{ authenticated ? (
 					<div className="wrapper">
-						<div className="overlay">
-							<span className="notice">
+						<div className="overlay" ref={ overlayRef }>
+							<span className="notice" ref={ noticeRef }>
 								<Icon icon="warning" />
 								{ __( 'Preview', 'arvernus-apple-maps-block' ) }
 							</span>
