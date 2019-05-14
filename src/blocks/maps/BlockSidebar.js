@@ -7,20 +7,20 @@ import Authenticate from './Authenticate';
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
-import { PanelBody, TextControl, ToggleControl, SelectControl } from '@wordpress/components';
-import { InspectorControls, PanelColorSettings } from '@wordpress/editor';
-import { DotTip } from '@wordpress/nux';
-import { select, dispatch } from '@wordpress/data';
+const { __ } = wp.i18n;
+const { PanelBody, TextControl, ToggleControl, SelectControl } = wp.components;
+const { InspectorControls, PanelColorSettings } = wp.editor;
+const { DotTip } = wp.nux;
+const { select, dispatch } = wp.data;
 
-const mapTypeOptions = Object.keys( window.mapkit.Map.MapTypes ).map( ( key ) => {
+const mapTypeOptions = Object.keys(window.mapkit.Map.MapTypes).map(key => {
 	return {
 		label: key,
-		value: window.mapkit.Map.MapTypes[ key ],
+		value: window.mapkit.Map.MapTypes[key],
 	};
-} );
+});
 
-const BlockSidebar = ( { attributes, setAttributes } ) => {
+const BlockSidebar = ({ attributes, setAttributes }) => {
 	const {
 		showsMapTypeControl,
 		pointTitle,
@@ -33,73 +33,73 @@ const BlockSidebar = ( { attributes, setAttributes } ) => {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Authentication' ) }>
+			<PanelBody title={__('Authentication')}>
 				<Authenticate />
 			</PanelBody>
-			<PanelBody title={ __( 'Map Settings' ) }>
+			<PanelBody title={__('Map Settings')}>
 				<ToggleControl
-					label={ __( 'Show Map Type Control' ) }
+					label={__('Show Map Type Control')}
 					help={
-						showsMapTypeControl ?
-							__( 'Map Type Control is visible.' ) :
-							__( 'Map Type Control is hidden.' )
+						showsMapTypeControl
+							? __('Map Type Control is visible.')
+							: __('Map Type Control is hidden.')
 					}
-					checked={ showsMapTypeControl }
-					onChange={ () => {
-						setAttributes( { showsMapTypeControl: ! showsMapTypeControl } );
-					} }
+					checked={showsMapTypeControl}
+					onChange={() => {
+						setAttributes({ showsMapTypeControl: !showsMapTypeControl });
+					}}
 				/>
 				<ToggleControl
-					label={ __( 'Show Zoom Control' ) }
-					help={ showsZoomControl ? __( 'Zoom Control is visible.' ) : __( 'Zoom Control is hidden.' ) }
-					checked={ showsZoomControl }
-					onChange={ () => {
-						setAttributes( { showsZoomControl: ! showsZoomControl } );
-					} }
+					label={__('Show Zoom Control')}
+					help={showsZoomControl ? __('Zoom Control is visible.') : __('Zoom Control is hidden.')}
+					checked={showsZoomControl}
+					onChange={() => {
+						setAttributes({ showsZoomControl: !showsZoomControl });
+					}}
 				/>
 				<SelectControl
-					label={ __( 'Map Type' ) }
-					value={ mapType }
-					onChange={ ( value ) => {
-						setAttributes( { mapType: value } );
-					} }
-					options={ mapTypeOptions }
+					label={__('Map Type')}
+					value={mapType}
+					onChange={value => {
+						setAttributes({ mapType: value });
+					}}
+					options={mapTypeOptions}
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Location Settings' ) }>
-				<Search setAttributes={ setAttributes } />
+			<PanelBody title={__('Location Settings')}>
+				<Search setAttributes={setAttributes} />
 				<TextControl
-					label={ __( 'Titel' ) }
-					value={ pointTitle }
-					onChange={ ( value ) => {
-						setAttributes( { pointTitle: value } );
-					} }
+					label={__('Titel')}
+					value={pointTitle}
+					onChange={value => {
+						setAttributes({ pointTitle: value });
+					}}
 				/>
 				<TextControl
-					label={ __( 'Subtitle' ) }
-					value={ pointSubtitle }
-					onChange={ ( value ) => {
-						setAttributes( { pointSubtitle: value } );
-					} }
+					label={__('Subtitle')}
+					value={pointSubtitle}
+					onChange={value => {
+						setAttributes({ pointSubtitle: value });
+					}}
 				/>
 				<TextControl
-					label={ __( 'Glyph Text' ) }
-					value={ pointGlyphText }
-					onChange={ ( value ) => {
-						setAttributes( { pointGlyphText: value } );
-					} }
+					label={__('Glyph Text')}
+					value={pointGlyphText}
+					onChange={value => {
+						setAttributes({ pointGlyphText: value });
+					}}
 				/>
 				<PanelColorSettings
-					title={ __( 'Color Settings' ) }
-					colorSettings={ [
+					title={__('Color Settings')}
+					colorSettings={[
 						{
 							value: pointColor,
-							onChange: ( value ) => {
-								setAttributes( { pointColor: value } );
+							onChange: value => {
+								setAttributes({ pointColor: value });
 							},
-							label: __( 'Glyph Color' ),
+							label: __('Glyph Color'),
 						},
-					] }
+					]}
 				/>
 			</PanelBody>
 		</InspectorControls>

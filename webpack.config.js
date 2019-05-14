@@ -1,58 +1,65 @@
-const webpack = require( 'webpack' );
-const defaultConfig = require( './node_modules/@wordpress/scripts/config/webpack.config' );
-const postcssPresetEnv = require( 'postcss-preset-env' );
-const path = require( 'path' );
+const ExtractText = require('extract-text-webpack-plugin');
+const debug = process.env.NODE_ENV !== 'production';
+const webpack = require('webpack');
+
+const extractEditorSCSS = new ExtractText({
+	filename: './build/.editor.css',
+});
+
+const extractBlockSCSS = new ExtractText({
+	filename: './build/style.css',
+});
+
+const plugins = [extractEditorSCSS, extractBlockSCSS];
+
+const scssConfig = {
+	use: [
+		{
+			loader: 'css-loader',
+		},
+		{
+			loader: 'sass-loader',
+			options: {
+				outputStyle: 'compressed',
+			},
+		},
+	],
+};
 
 module.exports = {
-	...defaultConfig,
+	context: __dirname,
+	devtool: debug ? 'eval-source-map' : '',
+	mode: debug ? 'development' : 'production',
 	entry: {
-		...defaultConfig.entry,
-		frontend: path.resolve( process.cwd(), 'src', 'frontend.js' ),
+		'./build/index': './src/index.js',
+		'./build/frontend': './src/frontend.js',
+	},
+	output: {
+		path: __dirname,
+		filename: '[name].js',
 	},
 	module: {
-		...defaultConfig.module,
 		rules: [
-			...defaultConfig.module.rules,
 			{
-				test: /\.(sc|sa|c)ss$/,
+				test: /\.js$/,
+				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'file-loader',
-						options: {
-							name: '[name].css',
-						},
-					},
-					{
-						loader: 'extract-loader',
-					},
-					{
-						loader: 'css-loader',
-					},
-					{
-						loader: 'sass-loader',
-					},
-					{
-						loader: 'postcss-loader',
-						options: {
-							ident: 'postcss',
-							plugins: () => [
-								postcssPresetEnv( {
-									stage: 3,
-									features: {
-										'custom-media-queries': {
-											preserve: false,
-										},
-										'custom-properties': {
-											preserve: true,
-										},
-										'nesting-rules': true,
-									},
-								} ),
-							],
-						},
+						loader: 'babel-loader',
 					},
 				],
 			},
+			{
+				test: /editor\.scss$/,
+				exclude: /node_modules/,
+				use: extractEditorSCSS.extract(scssConfig),
+			},
+			{
+				test: /style\.scss$/,
+				exclude: /node_modules/,
+				use: extractBlockSCSS.extract(scssConfig),
+			},
 		],
 	},
+	plugins,
 };

@@ -1,11 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
-import { Fragment, useEffect, useRef } from '@wordpress/element';
-import { registerBlockType } from '@wordpress/blocks';
-import { DotTip } from '@wordpress/nux';
-import { Icon } from '@wordpress/components';
+const { __ } = wp.i18n;
+const { Fragment, useEffect, useRef } = wp.element;
+const { registerBlockType } = wp.blocks;
+const { DotTip } = wp.nux;
+const { Icon } = wp.components;
 
 /**
  * Internal dependencies
@@ -65,7 +65,7 @@ const mapAttributes = {
 	},
 };
 
-registerBlockType( 'mapkitjs/map', {
+registerBlockType('mapkitjs/map', {
 	title: 'Mapkit',
 	icon: {
 		src: 'location-alt',
@@ -74,9 +74,9 @@ registerBlockType( 'mapkitjs/map', {
 	category: 'common',
 	attributes: mapAttributes,
 	supports: {
-		align: [ 'wide', 'full' ],
+		align: ['wide', 'full'],
 	},
-	edit: ( props ) => {
+	edit: props => {
 		const {
 			attributes,
 			attributes: {
@@ -94,69 +94,71 @@ registerBlockType( 'mapkitjs/map', {
 			setAttributes,
 		} = props;
 
-		const noticeRef = useRef( null );
-		const overlayRef = useRef( null );
+		const noticeRef = useRef(null);
+		const overlayRef = useRef(null);
 
 		function toggleShakeClass() {
-			noticeRef.current.classList.toggle( 'shake-top' );
+			noticeRef.current.classList.toggle('shake-top');
 
-			if ( noticeRef.current.classList.contains( 'shake-top' ) ) {
-				window.requestAnimationFrame( () => {
-					setTimeout( toggleShakeClass, 800 );
-				} );
+			if (noticeRef.current.classList.contains('shake-top')) {
+				window.requestAnimationFrame(() => {
+					setTimeout(toggleShakeClass, 800);
+				});
 			}
 		}
 
-		useEffect( () => {
-			overlayRef.current.addEventListener( 'click', toggleShakeClass );
-			return () => {
-				overlayRef.current.removeEventListener( 'click', toggleShakeClass );
-			};
-		} );
+		useEffect(() => {
+			if (overlayRef.current) {
+				overlayRef.current.addEventListener('click', toggleShakeClass);
+				return () => {
+					overlayRef.current.removeEventListener('click', toggleShakeClass);
+				};
+			}
+		});
 
 		return (
 			<Fragment>
-				<BlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
-				<AdvancedBlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
-				<CheckApi { ...props } />
-				{ authenticated ? (
+				<BlockSidebar attributes={attributes} setAttributes={setAttributes} />
+				<AdvancedBlockSidebar attributes={attributes} setAttributes={setAttributes} />
+				<CheckApi {...props} />
+				{authenticated ? (
 					<div className="wrapper">
-						<div className="overlay" ref={ overlayRef }>
-							<span className="notice" ref={ noticeRef }>
+						<div className="overlay" ref={overlayRef}>
+							<span className="notice" ref={noticeRef}>
 								<Icon icon="warning" />
-								{ __( 'Preview', 'arvernus-apple-maps-block' ) }
+								{__('Preview', 'arvernus-apple-maps-block')}
 							</span>
 						</div>
 						<DotTip tipId="arvernus/shows-map-type-controll">
-							{ __(
+							{__(
 								'This area is only a Preview. All the settings happen over in the Sidebar.',
 								'arvernus-apple-maps-block'
-							) }
+							)}
 						</DotTip>
 						<AppleMap
-							{ ...props }
-							className={ className }
-							showsMapTypeControl={ showsMapTypeControl }
-							mapType={ mapType }
-							pointTitle={ pointTitle }
-							pointSubtitle={ pointSubtitle }
-							pointGlyphText={ pointGlyphText }
-							pointLatitude={ pointLatitude }
-							pointLongitude={ pointLongitude }
-							pointColor={ pointColor }
+							{...props}
+							className={className}
+							showsMapTypeControl={showsMapTypeControl}
+							mapType={mapType}
+							pointTitle={pointTitle}
+							pointSubtitle={pointSubtitle}
+							pointGlyphText={pointGlyphText}
+							pointLatitude={pointLatitude}
+							pointLongitude={pointLongitude}
+							pointColor={pointColor}
 						/>
 					</div>
 				) : (
 					<p>
-						{ __( 'Please enter an API key in the block settings', 'arvernus-apple-maps-block' ) + ' ' }
+						{__('Please enter an API key in the block settings', 'arvernus-apple-maps-block') + ' '}
 						<ToggleSidebarButton />
 					</p>
-				) }
+				)}
 			</Fragment>
 		);
 	}, // end edit
 
-	save: ( props ) => {
+	save: props => {
 		const {
 			attributes: {
 				showsMapTypeControl,
@@ -172,16 +174,16 @@ registerBlockType( 'mapkitjs/map', {
 		} = props;
 		return (
 			<AppleMap
-				className={ className }
-				showsMapTypeControl={ showsMapTypeControl }
-				mapType={ mapType }
-				pointTitle={ pointTitle }
-				pointSubtitle={ pointSubtitle }
-				pointGlyphText={ pointGlyphText }
-				pointLatitude={ pointLatitude }
-				pointLongitude={ pointLongitude }
-				pointColor={ pointColor }
+				className={className}
+				showsMapTypeControl={showsMapTypeControl}
+				mapType={mapType}
+				pointTitle={pointTitle}
+				pointSubtitle={pointSubtitle}
+				pointGlyphText={pointGlyphText}
+				pointLatitude={pointLatitude}
+				pointLongitude={pointLongitude}
+				pointColor={pointColor}
 			/>
 		);
 	},
-} );
+});

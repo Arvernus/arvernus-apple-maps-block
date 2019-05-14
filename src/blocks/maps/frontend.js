@@ -1,16 +1,16 @@
 /**
  * WordPress dependencies
  */
-import domReady from '@wordpress/dom-ready';
-import apiFetch from '@wordpress/api-fetch';
+const domReady = wp.domReady;
+const apiFetch = wp.apiFetch;
 
-window.mapkit.draw = function( map, element ) {
+window.mapkit.draw = function(map, element) {
 	map.innerHTML = '';
 	const mapType = element.dataset.mapType;
 	const showsMapTypeControl = element.dataset.showsMapTypeControl;
 	const showsZoomControl = element.dataset.showsZoomControl;
-	const pointLongitude = parseFloat( element.dataset.pointLongitude );
-	const pointLatitude = parseFloat( element.dataset.pointLatitude );
+	const pointLongitude = parseFloat(element.dataset.pointLongitude);
+	const pointLatitude = parseFloat(element.dataset.pointLatitude);
 	const pointTitle = element.dataset.pointTitle;
 	const pointSubtitle = element.dataset.pointSubtitle;
 	const pointGlyphText = element.dataset.pointGlyphText;
@@ -21,34 +21,34 @@ window.mapkit.draw = function( map, element ) {
 	map.showsCompass = window.mapkit.FeatureVisibility.Adaptive;
 	map.showsZoomControl = showsZoomControl;
 
-	if ( pointLongitude && pointLatitude ) {
-		const work = new window.mapkit.Coordinate( pointLatitude, pointLongitude );
-		const workAnnotation = new window.mapkit.MarkerAnnotation( work );
+	if (pointLongitude && pointLatitude) {
+		const work = new window.mapkit.Coordinate(pointLatitude, pointLongitude);
+		const workAnnotation = new window.mapkit.MarkerAnnotation(work);
 
 		workAnnotation.color = pointColor;
 		workAnnotation.title = pointTitle;
 		workAnnotation.subtitle = pointSubtitle;
 		workAnnotation.selected = 'true';
 		workAnnotation.glyphText = pointGlyphText;
-		map.showItems( [ workAnnotation ], {
+		map.showItems([workAnnotation], {
 			animate: true,
-			padding: new window.mapkit.Padding( 800, 200, 800, 200 ),
-		} );
+			padding: new window.mapkit.Padding(800, 200, 800, 200),
+		});
 	}
 };
 
-domReady( function() {
-	window.mapkit.init( {
-		authorizationCallback( done ) {
-			apiFetch( { path: 'AppleMapKit/v1/GetJWT/' } )
-				.then( done )
+domReady(function() {
+	window.mapkit.init({
+		authorizationCallback(done) {
+			apiFetch({ path: 'AppleMapKit/v1/GetJWT/' })
+				.then(done)
 				.catch();
 		},
-	} );
-	const mapElements = document.querySelectorAll( '.wp-block-mapkitjs-map' );
+	});
+	const mapElements = document.querySelectorAll('.wp-block-mapkitjs-map');
 
-	mapElements.forEach( ( element ) => {
-		const map = new window.mapkit.Map( element );
-		window.mapkit.draw( map, element );
-	} );
-} );
+	mapElements.forEach(element => {
+		const map = new window.mapkit.Map(element);
+		window.mapkit.draw(map, element);
+	});
+});
