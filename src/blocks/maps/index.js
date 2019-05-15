@@ -36,11 +36,11 @@ const mapAttributes = {
 		default: true,
 	},
 	pointLatitude: {
-		type: 'number',
+		type: 'string',
 		default: '51.5237503',
 	},
 	pointLongitude: {
-		type: 'number',
+		type: 'string',
 		default: '-0.158555',
 	},
 	pointTitle: {
