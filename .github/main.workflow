@@ -20,5 +20,6 @@ action "Arvernus Release Package Version" {
   secrets = [
     "SECRET_KEY",
     "GITHUB_TOKEN",
+    "ARVERNUS_SECRET_KEY",
   ]
 }
