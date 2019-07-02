@@ -2,7 +2,7 @@
 
 ![Apple Maps Gutenberg Block inside the Gutenberg Editor](screenshot.png)
 
-This Plugin creates a Map block for the new WordPress editor. The map block allows you to add one Marker to an Apple Map and select the style and text of the map / marker.
+This Plugin creates a map block for the new WordPress editor. The map block allows you to add one Marker to an Apple Map and select the style and text of the map / marker.
 
 ## Available Settings
 
