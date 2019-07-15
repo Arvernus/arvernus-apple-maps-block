@@ -148,6 +148,7 @@ registerBlockType( 'mapkitjs/map', {
 							pointLongitude={ pointLongitude }
 							pointColor={ pointColor }
 						/>
+						<MapSnapshot />
 					</div>
 				) : (
 					<p>

@@ -11,7 +11,7 @@ const MapSnapshot = () => {
 	const [ privateKey, setPrivateKey ] = useState( null );
 
 	function signSignature( params ) {
-		const snapshotPath = `/api/v1/snapshot?${ params }`;
+		const snapshotPath = `https://snapshot.apple-mapkit.com/api/v1/snapshot?${ params }`;
 		const completePath = `${ snapshotPath }&teamId=${ teamId }&keyId=${ keyId }`;
 		const signature = sign( completePath, privateKey );
 		// In this example, the jwa module returns the signature as a Base64 URL-encoded string.
@@ -41,7 +41,7 @@ const MapSnapshot = () => {
 		keyId &&
 		teamId &&
 		privateKey && (
-			<img src={ `https://snapshot.apple-mapkit.com${ signSignature( 'center=apple+park' ) }` } alt="" />
+			<img src={ signSignature( 'center=apple+park' ) } alt="" />
 		)
 	);
 };
