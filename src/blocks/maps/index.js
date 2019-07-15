@@ -18,6 +18,7 @@ import BlockSidebar from './BlockSidebar';
 
 import './style.scss';
 import './editor.scss';
+import MapSnapshot from './MapSnapchot';
 
 const mapAttributes = {
 	mapType: {
@@ -108,10 +109,12 @@ registerBlockType( 'mapkitjs/map', {
 		}
 
 		useEffect( () => {
-			overlayRef.current.addEventListener( 'click', toggleShakeClass );
-			return () => {
-				overlayRef.current.removeEventListener( 'click', toggleShakeClass );
-			};
+			if ( overlayRef.current ) {
+				overlayRef.current.addEventListener( 'click', toggleShakeClass );
+				return () => {
+					overlayRef.current.removeEventListener( 'click', toggleShakeClass );
+				};
+			}
 		} );
 
 		return (
