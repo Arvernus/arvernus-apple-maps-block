@@ -1,0 +1,57 @@
+{
+	"name": "mapkitjs/map",
+	"title": "Mapkit",
+	"icon": {
+		"src": "location-alt"
+	},
+	"description": "Apple Maps",
+	"category": "common",
+	"supports": {
+		"align": ["wide", "full"]
+	},
+	"attributes": {
+		"mapType": {
+			"type": "string",
+			"default": "window.mapkit.Map.MapTypes.Standard"
+		},
+		"searchQuery": {
+			"type": "string"
+		},
+		"showsMapTypeControl": {
+			"type": "Boolean",
+			"default": true
+		},
+		"showsZoomControl": {
+			"type": "Boolean",
+			"default": true
+		},
+		"pointLatitude": {
+			"type": "string",
+			"default": "51.5237503"
+		},
+		"pointLongitude": {
+			"type": "string",
+			"default": "-0.158555"
+		},
+		"pointTitle": {
+			"type": "string",
+			"default": "221B Baker Street"
+		},
+		"pointSubtitle": {
+			"type": "string",
+			"default": "London"
+		},
+		"pointGlyphText": {
+			"type": "string",
+			"default": ""
+		},
+		"pointColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"authenticated": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

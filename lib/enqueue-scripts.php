@@ -9,11 +9,12 @@ function register_block_assets() {
 	wp_enqueue_script('apple-mapkit-js', "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js", [], 5, false);
 
 	$block_path = '/build/index.js';
-	$block_dependencies = file_get_contents(_get_plugin_url().'/build/index.deps.json');
+	$block_dependencies = json_decode(file_get_contents(_get_plugin_url().'/build/index.deps.json'));
+	array_push($block_dependencies, 'apple-mapkit-js');
 	wp_register_script(
 		'arvernus-apple-maps-block',
 		PLUGIN_ROOT . $block_path,
-		array_push( json_decode($block_dependencies), 'apple-mapkit-js' ),
+		$block_dependencies,
 		APPLE_MAPS_BLOCK_CURRENT_VERSION
 	);
 
@@ -54,11 +55,12 @@ function enqueue_frontend_assets() {
 	}
 
 	$frontend_path = '/build/frontend.js';
-	$frontend_dependencies = file_get_contents(_get_plugin_url().'/build/frontend.deps.json');
+	$frontend_dependencies = json_decode(file_get_contents(_get_plugin_url().'/build/frontend.deps.json'));
+	array_push($frontend_dependencies, 'apple-mapkit-js');
 	wp_enqueue_script(
 		'arvernus-apple-maps-blocks-frontend',
 		PLUGIN_ROOT . $frontend_path,
-		array_push( json_decode($frontend_dependencies), 'apple-mapkit-js' ),
+		$frontend_dependencies,
 		APPLE_MAPS_BLOCK_CURRENT_VERSION
 	);
 }
