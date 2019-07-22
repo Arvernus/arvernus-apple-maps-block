@@ -33,7 +33,7 @@ function register_block_assets() {
 		APPLE_MAPS_BLOCK_CURRENT_VERSION
     );
 	
-	wp_set_script_translations( 'jsforwp-callout-block', 'jsforwp', plugin_dir_path( __FILE__ ) . 'languages/' );
+	wp_set_script_translations( 'arvernus-apple-maps-block', 'arvernus-apple-maps-block', plugin_dir_path( __FILE__ ) . 'languages/' );
 
     register_block_type( 'arvernus/apple-maps-block', array(
 		'editor_script' => 'arvernus-apple-maps-block',

@@ -1,0 +1,106 @@
+# Copyright (C) 2019 Arvernus.info
+# This file is distributed under the same license as the Apple Maps Block plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Apple Maps Block 1.0.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/arvernus-apple-maps-block\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-07-22T11:32:42+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.2.0\n"
+"X-Domain: arvernus-apple-maps-block\n"
+
+#. Plugin Name of the plugin
+msgid "Apple Maps Block"
+msgstr ""
+
+#. Description of the plugin
+msgid "Creates a Gutenberg Block of the Apple MapKit JS library."
+msgstr ""
+
+#. Author of the plugin
+msgid "Arvernus.info"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://arvernus.info"
+msgstr ""
+
+#: build/index.js:443
+#: src/blocks/maps/AdvancedBlockSidebar.js:13
+msgid "Location Settings"
+msgstr ""
+
+#: build/index.js:445
+#: src/blocks/maps/AdvancedBlockSidebar.js:15
+msgid "Latitude"
+msgstr ""
+
+#: build/index.js:453
+#: src/blocks/maps/AdvancedBlockSidebar.js:22
+msgid "Longitude"
+msgstr ""
+
+#: build/index.js:756
+#: src/blocks/maps/Authenticate.js:105
+msgid "Please enter your private Key"
+msgstr ""
+
+#: build/index.js:764
+#: src/blocks/maps/Authenticate.js:112
+msgid "Please enter your Key ID"
+msgstr ""
+
+#: build/index.js:772
+#: src/blocks/maps/Authenticate.js:119
+msgid "Please enter your Team ID"
+msgstr ""
+
+#: build/index.js:793
+#: src/blocks/maps/Authenticate.js:139
+msgid "Instructions for getting a your Apple Maps Credentials."
+msgstr ""
+
+#: build/index.js:793
+#: src/blocks/maps/Authenticate.js:148
+msgid "API Key Saved"
+msgstr ""
+
+#: build/index.js:796
+#: src/blocks/maps/Authenticate.js:151
+msgid "Edit API Key"
+msgstr ""
+
+#: build/index.js:798
+#: src/blocks/maps/Authenticate.js:158
+msgid "Something has gone wrong. Please try Again"
+msgstr ""
+
+#: build/index.js:1166
+#: src/blocks/maps/Search.js:75
+msgid "Search"
+msgstr ""
+
+#: build/index.js:1167
+#: src/blocks/maps/Search.js:76
+msgid "Name or Adress of a Place..."
+msgstr ""
+
+#: build/index.js:1463
+#: src/blocks/maps/index.js:127
+msgid "Preview"
+msgstr ""
+
+#: build/index.js:1465
+#: src/blocks/maps/index.js:131
+msgid "This area is only a Preview. All the settings happen over in the Sidebar."
+msgstr ""
+
+#: build/index.js:1475
+#: src/blocks/maps/index.js:151
+msgid "Please enter an API key in the block settings"
+msgstr ""

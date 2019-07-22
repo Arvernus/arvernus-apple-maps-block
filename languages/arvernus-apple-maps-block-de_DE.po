@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Apple Maps Block 1.0.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/arvernus-apple-maps-block\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-07-22T11:32:42+00:00\n"
+"PO-Revision-Date: 2019-07-22 13:49+0200\n"
+"Language: de\n"
+"X-Generator: Poedit 2.2.3\n"
+"X-Domain: arvernus-apple-maps-block\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+msgid "Apple Maps Block"
+msgstr "Apple Maps Block"
+
+#. Description of the plugin
+msgid "Creates a Gutenberg Block of the Apple MapKit JS library."
+msgstr "Erstellt einen Gutenberg-Block basierend auf der Apple MapKit JS-Bibliothek."
+
+#. Author of the plugin
+msgid "Arvernus.info"
+msgstr "Arvernus.info"
+
+#. Author URI of the plugin
+msgid "https://arvernus.info"
+msgstr "https://arvernus.info"
