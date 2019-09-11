@@ -78,7 +78,7 @@ class Search extends Component {
 					onChange={ ( newValue ) => {
 						this.handleInputChange( newValue );
 					} }
-					autocomplete="off"
+					autoComplete="off"
 				/>
 				{ this.state.results.length > 0 && (
 					<Popover position="bottom" className="popover-suggestion-list" focusOnMount="false">
