@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Block Can Add Block 1`] = `
+"<!-- wp:mapkitjs/map -->
+<div class=\\"wp-block-mapkitjs-map\\" id=\\"map\\" data-shows-map-type-control=\\"true\\" data-map-type=\\"standard\\" data-point-title=\\"221B Baker Street\\" data-point-subtitle=\\"London\\" data-point-glyph-text=\\"\\" data-point-latitude=\\"51.5237503\\" data-point-longitude=\\"-0.158555\\" data-point-color=\\"#000000\\"></div>
+<!-- /wp:mapkitjs/map -->"
+`;

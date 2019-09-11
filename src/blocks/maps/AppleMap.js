@@ -33,7 +33,9 @@ class AppleMap extends Component {
 			Number.parseFloat( this.props.pointLongitude )
 		);
 
-		const markerAnnotation = new window.mapkit.MarkerAnnotation( markerCoordinate );
+		const markerAnnotation = new window.mapkit.MarkerAnnotation(
+			markerCoordinate
+		);
 		markerAnnotation.color = this.props.pointColor;
 		markerAnnotation.title = this.props.pointTitle;
 		markerAnnotation.subtitle = this.props.pointSubtitle;

@@ -1,0 +1,22 @@
+on: release
+name: Release Update to Arvernus Update Server
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install
+      uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+      with:
+        args: install
+    - name: Build
+      uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+      with:
+        args: run build
+    - name: Arvernus Release Package Version
+      uses: Arvernus/action-arvernus-release-update@master
+      env:
+        ARVERNUS_SECRET_KEY: ${{ secrets.ARVERNUS_SECRET_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
