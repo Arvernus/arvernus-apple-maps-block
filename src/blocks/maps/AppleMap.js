@@ -1,18 +1,13 @@
 /**
  * WordPress dependencies
  */
-import { Component } from '@wordpress/element';
+import { Component, createRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-
-/**
- * External dependencies
- */
-import React from 'react';
 
 class AppleMap extends Component {
 	constructor( props ) {
 		super( props );
-		this.mapDomNode = React.createRef();
+		this.mapDomNode = createRef();
 		this.state = {
 			appleMap: {},
 			markerCoordinate: {},

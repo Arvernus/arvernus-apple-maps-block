@@ -98,26 +98,33 @@ registerBlockType( 'mapkitjs/map', {
 		const overlayRef = useRef( null );
 
 		function toggleShakeClass() {
-			noticeRef.current.classList.toggle( 'shake-top' );
+			if ( noticeRef.current ) {
+				noticeRef.current.classList.toggle( 'shake-top' );
 
-			if ( noticeRef.current.classList.contains( 'shake-top' ) ) {
-				window.requestAnimationFrame( () => {
-					setTimeout( toggleShakeClass, 800 );
-				} );
+				if ( noticeRef.current.classList.contains( 'shake-top' ) ) {
+					window.requestAnimationFrame( () => {
+						setTimeout( toggleShakeClass, 800 );
+					} );
+				}
 			}
 		}
 
 		useEffect( () => {
-			overlayRef.current.addEventListener( 'click', toggleShakeClass );
-			return () => {
-				overlayRef.current.removeEventListener( 'click', toggleShakeClass );
-			};
-		} );
+			if ( overlayRef.current ) {
+				overlayRef.current.addEventListener( 'click', toggleShakeClass );
+				return () => {
+					overlayRef.current.removeEventListener( 'click', toggleShakeClass );
+				};
+			}
+		}, [ overlayRef ] );
 
 		return (
 			<Fragment>
 				<BlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
-				<AdvancedBlockSidebar attributes={ attributes } setAttributes={ setAttributes } />
+				<AdvancedBlockSidebar
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
 				<CheckApi { ...props } />
 				{ authenticated ? (
 					<div className="wrapper">
@@ -148,7 +155,10 @@ registerBlockType( 'mapkitjs/map', {
 					</div>
 				) : (
 					<p>
-						{ __( 'Please enter an API key in the block settings', 'arvernus-apple-maps-block' ) + ' ' }
+						{ __(
+							'Please enter an API key in the block settings',
+							'arvernus-apple-maps-block'
+						) + ' ' }
 						<ToggleSidebarButton />
 					</p>
 				) }
