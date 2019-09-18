@@ -1,4 +1,4 @@
-const BlockToolbar = ( { attributes, setAttributes } ) => {
+const BlockToolbar = ( { attributes } ) => {
 	const {} = attributes;
 
 	return null;

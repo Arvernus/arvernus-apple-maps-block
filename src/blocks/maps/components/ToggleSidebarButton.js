@@ -1,18 +1,14 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { withSelect, withDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 
 const ToggleSidebarButton = ( {
 	isEditorSidebarOpened,
-	closeGeneralSidebar,
 	openGeneralSidebar,
 } ) => {
-	const toggleGeneralSidebar = isEditorSidebarOpened ? closeGeneralSidebar : openGeneralSidebar;
-
 	if ( isEditorSidebarOpened ) {
 		return null;
 	}

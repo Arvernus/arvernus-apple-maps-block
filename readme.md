@@ -38,3 +38,11 @@ This Plugin creates a map block for the new WordPress editor. The map block allo
 #### Advanced Settings
 - **Latitude**: Textfield to manually set the latitude 
 - **Longitude**: Textfield to manually set the longitude 
+
+
+## Development
+If you want to contribute to this project you need to have node & npm installed on your mashine.
+
+There are a couple of scripts setup in the `package.json` file. But all you need to get up and running is `npm install` and `npm start`.
+
+This plugin uses `@wordpress/scripts` for the buildsystem. So you can check out their docs to find out more about the available scripts. 

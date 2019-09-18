@@ -15,28 +15,18 @@
 	},
 	"homepage": "https://github.com/Arvernus/arvernus-apple-maps-block#readme",
 	"devDependencies": {
-		"@wordpress/babel-preset-default": "^4.2.0",
 		"@wordpress/e2e-test-utils": "^1.1.0",
-		"@wordpress/eslint-plugin": "^2.2.0",
-		"@wordpress/scripts": "^3.2.1",
-		"css-loader": "^2.1.1",
-		"extract-loader": "^3.1.0",
-		"file-loader": "^3.0.1",
-		"node-sass": "^4.12.0",
-		"path": "^0.12.7",
-		"postcss-loader": "^3.0.0",
-		"postcss-preset-env": "^6.6.0",
-		"sass-loader": "^7.1.0",
-		"webpack": "^4.32.1"
+		"@wordpress/eslint-plugin": "^3.1.0",
+		"@wordpress/scripts": "^5.0.0"
 	},
 	"scripts": {
-		"build": "wp-scripts build",
+		"build": "wp-scripts build src/index.js src/frontend.js --output-path=build",
+		"start": "wp-scripts start src/index.js src/frontend.js --output-path=build",
 		"check-engines": "wp-scripts check-engines",
-		"check-licenses": "wp-scripts check-licenses --production",
-		"lint:css": "wp-scripts lint-style '**/*.css'",
-		"lint:js": "wp-scripts lint-js ./src/",
-		"lint:pkg-json": "wp-scripts lint-pkg-json .",
-		"start": "wp-scripts start",
+		"check-licenses": "wp-scripts check-licenses",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js"
 	}

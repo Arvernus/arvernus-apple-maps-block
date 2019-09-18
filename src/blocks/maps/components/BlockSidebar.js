@@ -8,10 +8,13 @@ import Authenticate from './Authenticate';
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { PanelBody, TextControl, ToggleControl, SelectControl } from '@wordpress/components';
+import {
+	PanelBody,
+	TextControl,
+	ToggleControl,
+	SelectControl,
+} from '@wordpress/components';
 import { InspectorControls, PanelColorSettings } from '@wordpress/editor';
-import { DotTip } from '@wordpress/nux';
-import { select, dispatch } from '@wordpress/data';
 
 const mapTypeOptions = Object.keys( window.mapkit.Map.MapTypes ).map( ( key ) => {
 	return {
@@ -51,7 +54,11 @@ const BlockSidebar = ( { attributes, setAttributes } ) => {
 				/>
 				<ToggleControl
 					label={ __( 'Show Zoom Control' ) }
-					help={ showsZoomControl ? __( 'Zoom Control is visible.' ) : __( 'Zoom Control is hidden.' ) }
+					help={
+						showsZoomControl ?
+							__( 'Zoom Control is visible.' ) :
+							__( 'Zoom Control is hidden.' )
+					}
 					checked={ showsZoomControl }
 					onChange={ () => {
 						setAttributes( { showsZoomControl: ! showsZoomControl } );
@@ -95,7 +102,11 @@ const BlockSidebar = ( { attributes, setAttributes } ) => {
 						{
 							value: pointColor,
 							onChange: ( value ) => {
-								setAttributes( { pointColor: value } );
+								if ( value === undefined ) {
+									setAttributes( { pointColor: '#000000' } );
+								} else {
+									setAttributes( { pointColor: value } );
+								}
 							},
 							label: __( 'Glyph Color' ),
 						},

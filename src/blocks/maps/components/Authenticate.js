@@ -2,7 +2,12 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { TextControl, TextareaControl, Button, Notice } from '@wordpress/components';
+import {
+	TextControl,
+	TextareaControl,
+	Button,
+	Notice,
+} from '@wordpress/components';
 import { Fragment, useEffect, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -20,27 +25,21 @@ const Authenticate = () => {
 	useEffect( () => {
 		apiFetch( {
 			path: '/AppleMapKit/v1/private_key/get/',
-		} )
-			.then( ( response ) => {
-				setPrivateKey( JSON.parse( response ) );
-			} )
-			.catch( () => {} );
+		} ).then( ( response ) => {
+			setPrivateKey( JSON.parse( response ) );
+		} ).catch();
 
 		apiFetch( {
 			path: '/AppleMapKit/v1/team_id/get/',
-		} )
-			.then( ( response ) => {
-				setTeamId( JSON.parse( response ) );
-			} )
-			.catch( () => {} );
+		} ).then( ( response ) => {
+			setTeamId( JSON.parse( response ) );
+		} ).catch();
 
 		apiFetch( {
 			path: '/AppleMapKit/v1/key_id/get/',
-		} )
-			.then( ( response ) => {
-				setKeyId( JSON.parse( response ) );
-			} )
-			.catch( () => {} );
+		} ).then( ( response ) => {
+			setKeyId( JSON.parse( response ) );
+		} ).catch();
 	}, [] );
 
 	const toggleIsEditing = () => {
@@ -95,14 +94,23 @@ const Authenticate = () => {
 			setIsSaving( false );
 			setSavingHasFailed( false );
 		}
-	}, [ isSavingKeyId, isSavingPrivateKey, isSavingTeamId, isSaving, savingHasFailed ] );
+	}, [
+		isSavingKeyId,
+		isSavingPrivateKey,
+		isSavingTeamId,
+		isSaving,
+		savingHasFailed,
+	] );
 
 	return (
 		<Fragment>
 			{ isEditing ? (
 				<form>
 					<TextareaControl
-						label={ __( 'Please enter your private Key', 'arvernus-apple-maps-block' ) }
+						label={ __(
+							'Please enter your private Key',
+							'arvernus-apple-maps-block'
+						) }
 						readonly={ isSaving }
 						name="private_key"
 						value={ privateKey }
@@ -123,7 +131,13 @@ const Authenticate = () => {
 						onChange={ ( newTeamId ) => setTeamId( newTeamId ) }
 					/>
 					<p>
-						<Button isButton isPrimary disabled={ isSaving } isBusy={ isSaving } onClick={ onSave }>
+						<Button
+							isButton
+							isPrimary
+							disabled={ isSaving }
+							isBusy={ isSaving }
+							onClick={ onSave }
+						>
 							Save API Key
 						</Button>{ ' ' }
 						<Button isButton disabled={ isSaving } onClick={ toggleIsEditing }>
@@ -155,7 +169,12 @@ const Authenticate = () => {
 			) }
 			{ savingHasFailed && (
 				<Notice status="error">
-					<p>{ __( 'Something has gone wrong. Please try Again', 'arvernus-apple-maps-block' ) }</p>
+					<p>
+						{ __(
+							'Something has gone wrong. Please try Again',
+							'arvernus-apple-maps-block'
+						) }
+					</p>
 				</Notice>
 			) }
 		</Fragment>
