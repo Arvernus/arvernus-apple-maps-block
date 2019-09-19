@@ -28,6 +28,12 @@
 		"lint:js": "wp-scripts lint-js",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"test:e2e": "wp-scripts test-e2e",
-		"test:unit": "wp-scripts test-unit-js"
+		"test:unit": "wp-scripts test-unit-js",
+		"env": "wp-scripts env"
+	},
+	"wp-env": {
+		"plugin-dir": "arvernus-slider",
+		"plugin-name": "arvernus-slider",
+		"welcome-build-command": "npm run dev"
 	}
 }
