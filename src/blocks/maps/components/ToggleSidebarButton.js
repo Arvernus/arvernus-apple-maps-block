@@ -25,13 +25,12 @@ export default compose(
 			isEditorSidebarOpened: select( 'core/edit-post' ).isEditorSidebarOpened(),
 		};
 	} ),
-	withDispatch( ( dispatch, ownProps, { select } ) => {
-		const { getBlockSelectionStart } = select( 'core/editor' );
+	withDispatch( ( dispatch ) => {
 		const { openGeneralSidebar, closeGeneralSidebar } = dispatch( 'core/edit-post' );
 
 		return {
 			openGeneralSidebar: () =>
-				openGeneralSidebar( getBlockSelectionStart() ? 'edit-post/block' : 'edit-post/document' ),
+				openGeneralSidebar( 'edit-post/block' ),
 			closeGeneralSidebar,
 		};
 	} )

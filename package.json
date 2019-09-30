@@ -32,8 +32,8 @@
 		"env": "wp-scripts env"
 	},
 	"wp-env": {
-		"plugin-dir": "arvernus-slider",
-		"plugin-name": "arvernus-slider",
+		"plugin-dir": "arvernus-apple-maps-block",
+		"plugin-name": "Apple Maps Block",
 		"welcome-build-command": "npm run dev"
 	}
 }

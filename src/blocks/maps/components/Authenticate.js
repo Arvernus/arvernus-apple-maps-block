@@ -161,7 +161,7 @@ const Authenticate = () => {
 				<Fragment>
 					<p>{ __( 'API Key Saved', 'arvernus-apple-maps-block' ) }</p>
 					<p>
-						<Button className="is-button" onClick={ toggleIsEditing }>
+						<Button id="arvernus-apple-maps-block-edit-api-key-button" className="is-button" onClick={ toggleIsEditing }>
 							{ __( 'Edit API Key', 'arvernus-apple-maps-block' ) }
 						</Button>
 					</p>
